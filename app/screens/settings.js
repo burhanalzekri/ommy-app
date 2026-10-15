@@ -21,6 +21,9 @@ export function SettingsScreen() {
         </div>
       </div>
 
+      ${sectionHeader('📄', 'تقرير الطبيبة', '#8B5CF6')}
+      ${renderReportSection()}
+
       ${sectionHeader('👶', 'الأطفال', '#8B7382')}
       ${kids.map(k => childCard(k, k.id === active?.id)).join('')}
       <button onclick="ommyAddChild()" type="button" style="width:100%;margin:12px 0 20px;padding:14px;border:2px dashed var(--line);border-radius:16px;background:var(--cream);color:var(--ink-2);font-family:var(--font-heading);font-weight:900;font-size:0.88rem;cursor:pointer">➕ إضافة طفل جديد</button>
@@ -95,4 +98,26 @@ function toggleRow(icon, label, key, on) {
 
 function notifyRow(icon, label, desc, key, on) {
   return `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px dashed var(--line)"><div style="display:flex;align-items:center;gap:10px;flex:1"><span style="font-size:1.2rem">${icon}</span><div><div style="font-family:var(--font-heading);font-size:0.86rem;font-weight:800">${label}</div><div style="font-size:0.7rem;color:var(--ink-3)">${desc}</div></div></div><button onclick="ommyNotify('${key}', this)" type="button" style="width:52px;height:30px;border-radius:100px;border:none;background:${on ? 'linear-gradient(145deg,#D9829A,#B94F70)' : 'var(--beige-2)'};cursor:pointer;position:relative"><span style="position:absolute;top:3px;${on ? 'left:3px;' : 'right:3px;'}width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.15)"></span></button></div>`;
+}
+
+/* ============ قسم التقرير ============ */
+function renderReportSection() {
+  return `
+    <div style="background:linear-gradient(135deg,var(--lavender-soft),var(--rose-soft));border:1.5px solid var(--lavender);border-radius:20px;padding:16px;margin-bottom:20px">
+      <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
+        <span style="width:52px;height:52px;border-radius:16px;background:#fff;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0;box-shadow:0 4px 12px rgba(123,104,184,.15)">📄</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-family:var(--font-heading);font-weight:900;font-size:0.9rem;color:var(--lavender-deep);margin-bottom:4px">تقرير صحي شامل</div>
+          <div style="font-size:0.76rem;color:var(--ink-2);line-height:1.6">أنشئي تقريراً احترافياً لطبيبة الأطفال يشمل ملخص اليوم والأسبوع الماضي والمتوسطات</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <button onclick="ommyOpenReport()" type="button" style="padding:12px;border:none;border-radius:14px;background:linear-gradient(145deg,var(--lavender),var(--lavender-deep));color:#fff;font-family:var(--font-heading);font-weight:900;font-size:0.8rem;cursor:pointer;box-shadow:0 6px 16px rgba(123,104,184,.3)">📄 افتحي التقرير</button>
+        <button onclick="ommyDownloadReport()" type="button" style="padding:12px;border:1.5px solid var(--lavender);border-radius:14px;background:var(--cream);color:var(--lavender-deep);font-family:var(--font-heading);font-weight:900;font-size:0.8rem;cursor:pointer">📥 نزّلي HTML</button>
+      </div>
+      <div style="font-size:0.68rem;color:var(--ink-3);margin-top:10px;text-align:center;line-height:1.6">
+        💡 لتحويله PDF: من نافذة الطباعة اختر "حفظ كـ PDF"
+      </div>
+    </div>
+  `;
 }

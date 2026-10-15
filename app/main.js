@@ -28,6 +28,14 @@ import { LogStore, BabyStore } from './lib/storage.js';
 import { toast, haptic } from './lib/toast.js';
 import { ommyAlert, ommyConfirm, ommyPrompt } from './lib/modal.js';
 import './lib/notifications.js';
+import './lib/timer.js';
+import './lib/silent.js';
+import './lib/predictions.js';
+import './lib/summary.js';
+import './lib/report.js';
+import './lib/tips.js';
+import './lib/multi-child.js';
+import './lib/notifications.js';
 import './lib/audio.js';
 
 /* اجعلها متاحة عالمياً للأزرار inline */
@@ -317,6 +325,9 @@ function renderMobileBar(route) {
     <header class="app-bar">
       <button class="app-bar__btn app-bar__menu-btn" id="menuBtn" aria-label="القائمة" type="button" onclick="window.ommyToggle(); return false;">☰</button>
       <div class="app-bar__mobile-logo">أ</div>
+      <button class="app-bar__child-btn" id="childPickerBtn" onclick="ommyChildPicker()" type="button" title="تبديل الطفل">
+        <span id="childPickerIcon">👶</span>
+      </button>
       <div class="app-bar__title">${route.label}</div>
       <button class="app-bar__btn" id="themeBtnMobile" aria-label="الوضع" type="button">
         ${state.theme === 'dark' ? '☀️' : '🌙'}
