@@ -1,4 +1,4 @@
-import { HomeScreen } from './screens/h_main_1791985236.js';
+import { HomeScreen } from './screens/home.js';
 import { NutritionScreen } from './screens/nutrition.js';
 import { SleepScreen } from './screens/sleep.js';
 import { PregnancyScreen } from './screens/pregnancy.js';

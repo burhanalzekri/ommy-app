@@ -89,7 +89,7 @@ window.ommyCalcPreg = function() {
   window.showModal({
     type: 'question',
     title: '🤰 تاريخ آخر دورة شهرية',
-    message: `أدخلي التاريخ لحساب حملك بدقة${existing ? '<br><span style="color:#6D28D9;font-size:0.78rem">(التاريخ الحالي: ' + existing.lmp + ')</span>' : ''}`,
+    message: `أدخلي التاريخ لحساب حملك بدقة${existing ? '<br><span style="color:#B94F70;font-size:0.78rem">(التاريخ الحالي: ' + existing.lmp + ')</span>' : ''}`,
     input: true,
     inputPlaceholder: 'مثال: 2026-08-15',
     inputType: 'date',
@@ -139,7 +139,7 @@ export function PregnancyCalcScreen() {
   if (!p) {
     return `
       <div style="grid-column:1/-1;width:100%">
-        <div style="background:linear-gradient(135deg,#8B5CF6 0%,#6D28D9 60%,#4C1D95 100%);border-radius:24px;padding:28px 20px;color:#fff;position:relative;overflow:hidden;margin-bottom:22px;box-shadow:0 20px 45px rgba(139,92,246,.4);text-align:center">
+        <div style="background:linear-gradient(135deg,#C65D7B 0%,#B94F70 60%,#8B3D5A 100%);border-radius:24px;padding:28px 20px;color:#fff;position:relative;overflow:hidden;margin-bottom:22px;box-shadow:0 20px 45px rgba(139,92,246,.4);text-align:center">
           <div style="position:absolute;inset-inline-end:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.3),transparent 70%)"></div>
           <div style="position:relative;z-index:1">
             <div style="font-size:4rem;margin-bottom:12px">🤰</div>
@@ -148,7 +148,7 @@ export function PregnancyCalcScreen() {
           </div>
         </div>
 
-        <button onclick="ommyCalcPreg()" type="button" style="width:100%;padding:18px;border:none;border-radius:18px;background:linear-gradient(145deg,#8B5CF6,#6D28D9);color:#fff;font-family:var(--font-heading);font-weight:900;font-size:1rem;cursor:pointer;box-shadow:0 14px 30px rgba(139,92,246,.4)">
+        <button onclick="ommyCalcPreg()" type="button" style="width:100%;padding:18px;border:none;border-radius:18px;background:linear-gradient(145deg,#C65D7B,#B94F70);color:#fff;font-family:var(--font-heading);font-weight:900;font-size:1rem;cursor:pointer;box-shadow:0 14px 30px rgba(139,92,246,.4)">
           🤰 ابدئي حساب حملك
         </button>
       </div>
@@ -160,7 +160,7 @@ export function PregnancyCalcScreen() {
     <div style="grid-column:1/-1;width:100%">
 
       <!-- HERO -->
-      <div style="background:linear-gradient(135deg,#8B5CF6 0%,#6D28D9 60%,#4C1D95 100%);border-radius:24px;padding:24px 20px;color:#fff;position:relative;overflow:hidden;margin-bottom:20px;box-shadow:0 20px 45px rgba(139,92,246,.4)">
+      <div style="background:linear-gradient(135deg,#C65D7B 0%,#B94F70 60%,#8B3D5A 100%);border-radius:24px;padding:24px 20px;color:#fff;position:relative;overflow:hidden;margin-bottom:20px;box-shadow:0 20px 45px rgba(139,92,246,.4)">
         <div style="position:absolute;inset-inline-end:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.3),transparent 70%)"></div>
         <div style="position:relative;z-index:1">
           <div style="text-align:center;margin-bottom:16px">
@@ -183,29 +183,29 @@ export function PregnancyCalcScreen() {
 
       <!-- الإحصائيات الثلاث -->
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px">
-        ${statBox('📅', 'بقي', p.remaining + ' يوم', '#8B5CF6')}
-        ${statBox('🌙', 'الأسبوع القادم', p.daysUntilNextWeek + ' أيام', '#6D28D9')}
-        ${statBox('🎀', 'الولادة', p.dueDate.toLocaleDateString('ar-EG', { month: 'short', day: 'numeric' }), '#4C1D95')}
+        ${statBox('📅', 'بقي', p.remaining + ' يوم', '#C65D7B')}
+        ${statBox('🌙', 'الأسبوع القادم', p.daysUntilNextWeek + ' أيام', '#B94F70')}
+        ${statBox('🎀', 'الولادة', p.dueDate.toLocaleDateString('ar-EG', { month: 'short', day: 'numeric' }), '#8B3D5A')}
       </div>
 
       <!-- التهنئة -->
       ${p.celebration ? `
-        <div style="background:linear-gradient(135deg,#FEF3C7,#FDE68A);border:2px solid #F59E0B;border-radius:18px;padding:16px;margin-bottom:20px;display:flex;gap:12px;align-items:center;box-shadow:0 8px 20px rgba(245,158,11,.25)">
+        <div style="background:linear-gradient(135deg,#FDF3EB,#FBE5CE);border:2px solid #F5C8A8;border-radius:18px;padding:16px;margin-bottom:20px;display:flex;gap:12px;align-items:center;box-shadow:0 8px 20px rgba(245,158,11,.25)">
           <span style="font-size:2rem;flex-shrink:0">🎉</span>
           <div>
-            <div style="font-family:var(--font-heading);font-size:0.95rem;font-weight:900;color:#92400E;line-height:1.4">${p.celebration}</div>
-            <div style="font-size:0.74rem;color:#78350F;margin-top:3px">استمري — أنتِ قوية!</div>
+            <div style="font-family:var(--font-heading);font-size:0.95rem;font-weight:900;color:#A6653A;line-height:1.4">${p.celebration}</div>
+            <div style="font-size:0.74rem;color:#8B5A38;margin-top:3px">استمري — أنتِ قوية!</div>
           </div>
         </div>
       ` : ''}
 
       <!-- نصائح الأسبوع -->
-      ${sectionHeader(p.tips.icon, 'نصائح الأسبوع ' + p.weeks + ' · ' + p.tips.title, '#8B5CF6')}
+      ${sectionHeader(p.tips.icon, 'نصائح الأسبوع ' + p.weeks + ' · ' + p.tips.title, '#C65D7B')}
 
-      <div style="background:var(--cream);border:1.5px solid #DDD6FE;border-radius:18px;padding:16px;margin-bottom:16px">
+      <div style="background:var(--cream);border:1.5px solid #F5D9E2;border-radius:18px;padding:16px;margin-bottom:16px">
         ${p.tips.tips.map((t, i) => `
-          <div style="display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:${i === p.tips.tips.length - 1 ? 'none' : '1px dashed #DDD6FE'}">
-            <span style="width:32px;height:32px;border-radius:50%;background:linear-gradient(145deg,#8B5CF6,#6D28D9);color:#fff;display:grid;place-items:center;font-family:var(--font-heading);font-weight:900;font-size:0.82rem;flex-shrink:0">${i+1}</span>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:${i === p.tips.tips.length - 1 ? 'none' : '1px dashed #F5D9E2'}">
+            <span style="width:32px;height:32px;border-radius:50%;background:linear-gradient(145deg,#C65D7B,#B94F70);color:#fff;display:grid;place-items:center;font-family:var(--font-heading);font-weight:900;font-size:0.82rem;flex-shrink:0">${i+1}</span>
             <span style="font-size:0.82rem;color:var(--ink-2);line-height:1.5;flex:1">${t}</span>
           </div>
         `).join('')}
@@ -213,18 +213,18 @@ export function PregnancyCalcScreen() {
 
       <!-- أزرار سريعة -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
-        <button onclick="ommySpeakTips()" type="button" style="padding:14px;border:none;border-radius:14px;background:linear-gradient(145deg,#8B5CF6,#6D28D9);color:#fff;font-family:var(--font-heading);font-weight:900;font-size:0.82rem;cursor:pointer;box-shadow:0 8px 20px rgba(139,92,246,.3)">🔊 اسمعي النصائح</button>
-        <button onclick="ommyCalcPreg()" type="button" style="padding:14px;border:1.5px solid #C4B5FD;border-radius:14px;background:var(--cream);color:#6D28D9;font-family:var(--font-heading);font-weight:900;font-size:0.82rem;cursor:pointer">✏️ تعديل التاريخ</button>
+        <button onclick="ommySpeakTips()" type="button" style="padding:14px;border:none;border-radius:14px;background:linear-gradient(145deg,#C65D7B,#B94F70);color:#fff;font-family:var(--font-heading);font-weight:900;font-size:0.82rem;cursor:pointer;box-shadow:0 8px 20px rgba(139,92,246,.3)">🔊 اسمعي النصائح</button>
+        <button onclick="ommyCalcPreg()" type="button" style="padding:14px;border:1.5px solid #F0B8C8;border-radius:14px;background:var(--cream);color:#B94F70;font-family:var(--font-heading);font-weight:900;font-size:0.82rem;cursor:pointer">✏️ تعديل التاريخ</button>
       </div>
 
       <!-- معلومات إضافية -->
-      ${sectionHeader('💡', 'معلومات مهمة', '#6D28D9')}
+      ${sectionHeader('💡', 'معلومات مهمة', '#B94F70')}
 
-      <div style="display:flex;gap:12px;align-items:flex-start;background:linear-gradient(135deg,#FEF2F2,#FEE2E2);border:1.5px solid #FCA5A5;border-radius:16px;padding:14px;margin-bottom:20px">
+      <div style="display:flex;gap:12px;align-items:flex-start;background:linear-gradient(135deg,#FDF5F5,#FDEEEE);border:1.5px solid #F5C8C8;border-radius:16px;padding:14px;margin-bottom:20px">
         <span style="font-size:1.3rem;flex-shrink:0">🚨</span>
         <div>
           <div style="font-family:var(--font-heading);font-size:0.85rem;font-weight:900;color:#B91C1C;margin-bottom:4px">علامات خطر — راجعي الطبيب فوراً</div>
-          <div style="font-size:0.74rem;color:#7F1D1D;line-height:1.7">
+          <div style="font-size:0.74rem;color:#8B2020;line-height:1.7">
             • نزيف<br>
             • صداع شديد مستمر<br>
             • تورم مفاجئ بالوجه أو اليدين<br>
@@ -235,12 +235,12 @@ export function PregnancyCalcScreen() {
       </div>
 
       <!-- ============ قسم الإنجازات ============ -->
-      ${sectionHeader('🏆', 'إنجازات رحلة الحمل', '#F59E0B')}
+      ${sectionHeader('🏆', 'إنجازات رحلة الحمل', '#F5C8A8')}
 
       ${renderBadgesInline()}
 
       <!-- زر الحقيبة -->
-      <button onclick="ommyToast && ommyToast('توجهي لقسم الحمل لمتابعة الحقيبة', '🧳')" type="button" style="width:100%;padding:14px;border:1.5px solid #DDD6FE;border-radius:16px;background:var(--cream);color:#6D28D9;font-family:var(--font-heading);font-weight:900;font-size:0.88rem;cursor:pointer;margin-top:16px">🧳 فتح حقيبة الولادة</button>
+      <button onclick="ommyToast && ommyToast('توجهي لقسم الحمل لمتابعة الحقيبة', '🧳')" type="button" style="width:100%;padding:14px;border:1.5px solid #F5D9E2;border-radius:16px;background:var(--cream);color:#B94F70;font-family:var(--font-heading);font-weight:900;font-size:0.88rem;cursor:pointer;margin-top:16px">🧳 فتح حقيبة الولادة</button>
     </div>
   `;
 }
@@ -257,22 +257,22 @@ function renderBadgesInline() {
   );
 
   return `
-    <div style="background:linear-gradient(135deg,#FEF3C7,#FDE68A);border:1.5px solid #FCD34D;border-radius:18px;padding:16px;margin-bottom:14px">
+    <div style="background:linear-gradient(135deg,#FDF3EB,#FBE5CE);border:1.5px solid #F8DCC0;border-radius:18px;padding:16px;margin-bottom:14px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-        <div style="font-family:var(--font-heading);font-size:0.88rem;font-weight:900;color:#92400E">🏆 ${earned.length} من ${total} شارة</div>
-        <div style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:#B45309">${progress}%</div>
+        <div style="font-family:var(--font-heading);font-size:0.88rem;font-weight:900;color:#A6653A">🏆 ${earned.length} من ${total} شارة</div>
+        <div style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:#C17A4A">${progress}%</div>
       </div>
       <div style="height:8px;background:rgba(255,255,255,.6);border-radius:100px;overflow:hidden;margin-bottom:14px">
-        <div style="height:100%;width:${progress}%;background:linear-gradient(90deg,#F59E0B,#B45309);border-radius:100px;transition:width 1s"></div>
+        <div style="height:100%;width:${progress}%;background:linear-gradient(90deg,#F5C8A8,#C17A4A);border-radius:100px;transition:width 1s"></div>
       </div>
 
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
         ${pregBadges.map(b => {
           const has = earned.includes(b.id);
           return `
-            <div title="${b.desc}" style="background:${has ? '#fff' : 'rgba(255,255,255,.4)'};border:1.5px solid ${has ? '#F59E0B' : 'rgba(245,158,11,.25)'};border-radius:14px;padding:10px 4px;text-align:center;${has ? '' : 'opacity:.45'}">
+            <div title="${b.desc}" style="background:${has ? '#fff' : 'rgba(255,255,255,.4)'};border:1.5px solid ${has ? '#F5C8A8' : 'rgba(245,158,11,.25)'};border-radius:14px;padding:10px 4px;text-align:center;${has ? '' : 'opacity:.45'}">
               <div style="font-size:1.5rem;${!has ? 'filter:grayscale(1);' : ''}">${b.icon}</div>
-              <div style="font-size:0.58rem;font-weight:900;color:#92400E;margin-top:4px;line-height:1.2">${b.title}</div>
+              <div style="font-size:0.58rem;font-weight:900;color:#A6653A;margin-top:4px;line-height:1.2">${b.title}</div>
             </div>
           `;
         }).join('')}
@@ -280,8 +280,8 @@ function renderBadgesInline() {
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
-      <button onclick="ommyShareBadgesInPreg()" type="button" style="padding:12px;border:none;border-radius:14px;background:linear-gradient(145deg,#F59E0B,#B45309);color:#fff;font-family:var(--font-heading);font-weight:900;font-size:0.78rem;cursor:pointer;box-shadow:0 8px 18px rgba(245,158,11,.3)">📱 شاركي</button>
-      <button onclick="ommyToast && ommyToast('أنجزي المزيد من الشارات! 🏆', '🏆')" type="button" style="padding:12px;border:1.5px solid #FCD34D;border-radius:14px;background:var(--cream);color:#92400E;font-family:var(--font-heading);font-weight:900;font-size:0.78rem;cursor:pointer">🔒 القادمة</button>
+      <button onclick="ommyShareBadgesInPreg()" type="button" style="padding:12px;border:none;border-radius:14px;background:linear-gradient(145deg,#F5C8A8,#C17A4A);color:#fff;font-family:var(--font-heading);font-weight:900;font-size:0.78rem;cursor:pointer;box-shadow:0 8px 18px rgba(245,158,11,.3)">📱 شاركي</button>
+      <button onclick="ommyToast && ommyToast('أنجزي المزيد من الشارات! 🏆', '🏆')" type="button" style="padding:12px;border:1.5px solid #F8DCC0;border-radius:14px;background:var(--cream);color:#A6653A;font-family:var(--font-heading);font-weight:900;font-size:0.78rem;cursor:pointer">🔒 القادمة</button>
     </div>
   `;
 }

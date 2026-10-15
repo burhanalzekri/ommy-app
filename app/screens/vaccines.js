@@ -1,7 +1,7 @@
 export function VaccinesScreen() {
   return `
     <div style="grid-column:1/-1;width:100%">
-      <div style="background:linear-gradient(135deg,#F59E0B 0%,#B45309 60%,#78350F 100%);border-radius:22px;padding:20px;color:#fff;position:relative;overflow:hidden;margin-bottom:20px;box-shadow:0 20px 40px rgba(245,158,11,.35)">
+      <div style="background:linear-gradient(135deg,#F5C8A8 0%,#C17A4A 60%,#8B5A38 100%);border-radius:22px;padding:20px;color:#fff;position:relative;overflow:hidden;margin-bottom:20px;box-shadow:0 20px 40px rgba(245,158,11,.35)">
         <div style="position:absolute;inset-inline-end:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%)"></div>
         <div style="position:relative;z-index:1">
           <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
@@ -15,21 +15,21 @@ export function VaccinesScreen() {
         </div>
       </div>
 
-      ${sectionHeader('📅', 'الخط الزمني · 0–18 شهراً', '#F59E0B')}
+      ${sectionHeader('📅', 'الخط الزمني · 0–18 شهراً', '#F5C8A8')}
 
       <div style="position:relative;padding-inline-start:32px">
         <div style="position:absolute;inset-inline-start:11px;top:14px;bottom:14px;width:2px;background:var(--line);border-radius:2px"></div>
-        ${tlItem('done', 'الجرعة الأولى (عند الولادة)', 'عند الولادة', 'BCG + التهاب الكبد B', '✓ تم', '#15803D', '#DCFCE7')}
-        ${tlItem('done', 'الجرعة الثانية', 'شهران', 'شلل الأطفال + السعال الديكي + الكزاز', '✓ تم', '#15803D', '#DCFCE7')}
-        ${tlItem('done', 'الجرعة الثالثة', '4 أشهر', 'الجرعة الروتينية الثالثة', '✓ تم', '#15803D', '#DCFCE7')}
-        ${tlItem('done', 'الجرعة المنشّطة', '9 أشهر', 'الحصبة الألمانية + النكاف', '✓ تم', '#15803D', '#DCFCE7')}
-        ${tlItem('next', 'تطعيم الحصبة (MMR)', '14 شهراً', 'الجرعة الأولى · بعد 5 أيام', '⏰ القادم', '#B45309', '#FEF3C7')}
-        ${tlItem('later', 'الجرعة المنشّطة', '18 شهراً', 'شلل الأطفال + الثلاثي البكتيري', 'قادم لاحقاً', '#4B5563', '#E5E7EB')}
+        ${tlItem('done', 'الجرعة الأولى (عند الولادة)', 'عند الولادة', 'BCG + التهاب الكبد B', '✓ تم', '#B94F70', '#FDF0F3')}
+        ${tlItem('done', 'الجرعة الثانية', 'شهران', 'شلل الأطفال + السعال الديكي + الكزاز', '✓ تم', '#B94F70', '#FDF0F3')}
+        ${tlItem('done', 'الجرعة الثالثة', '4 أشهر', 'الجرعة الروتينية الثالثة', '✓ تم', '#B94F70', '#FDF0F3')}
+        ${tlItem('done', 'الجرعة المنشّطة', '9 أشهر', 'الحصبة الألمانية + النكاف', '✓ تم', '#B94F70', '#FDF0F3')}
+        ${tlItem('next', 'تطعيم الحصبة (MMR)', '14 شهراً', 'الجرعة الأولى · بعد 5 أيام', '⏰ القادم', '#C17A4A', '#FDF3EB')}
+        ${tlItem('later', 'الجرعة المنشّطة', '18 شهراً', 'شلل الأطفال + الثلاثي البكتيري', 'قادم لاحقاً', '#4B5563', '#F0E2E6')}
       </div>
 
-      ${sectionHeader('📄', 'بطاقة التطعيم الرسمية', '#F59E0B')}
+      ${sectionHeader('📄', 'بطاقة التطعيم الرسمية', '#F5C8A8')}
 
-      <button onclick="ommyToast && ommyToast('📄 تحميل البطاقة PDF', '📄')" type="button" style="width:100%;padding:14px;border:none;border-radius:16px;background:linear-gradient(145deg,#F59E0B,#B45309);color:#fff;font-family:var(--font-heading);font-weight:900;font-size:0.9rem;cursor:pointer;box-shadow:0 12px 26px rgba(245,158,11,.35)">📄 تحميل البطاقة PDF</button>
+      <button onclick="ommyToast && ommyToast('📄 تحميل البطاقة PDF', '📄')" type="button" style="width:100%;padding:14px;border:none;border-radius:16px;background:linear-gradient(145deg,#F5C8A8,#C17A4A);color:#fff;font-family:var(--font-heading);font-weight:900;font-size:0.9rem;cursor:pointer;box-shadow:0 12px 26px rgba(245,158,11,.35)">📄 تحميل البطاقة PDF</button>
     </div>
   `;
 }
@@ -39,12 +39,12 @@ function sectionHeader(icon, title, color) {
 }
 
 function tlItem(state, title, date, desc, badge, badgeColor, badgeBg) {
-  const dotColors = { done: 'linear-gradient(145deg,#34D399,#10B981)', next: 'linear-gradient(145deg,#FBBF24,#F59E0B)', later: '#D1D5DB' };
+  const dotColors = { done: 'linear-gradient(145deg,#E8A3B6,#D9829A)', next: 'linear-gradient(145deg,#F5D5B8,#F5C8A8)', later: '#D1D5DB' };
   const shadow = state === 'next' ? 'box-shadow:0 0 0 5px rgba(245,158,11,.22);' : state === 'done' ? 'box-shadow:0 0 0 4px rgba(16,185,129,.15);' : '';
   return `
     <div style="position:relative;margin-bottom:14px">
       <span style="position:absolute;inset-inline-start:-27px;top:14px;width:14px;height:14px;border-radius:50%;background:${dotColors[state]};border:3px solid var(--sand);${shadow}"></span>
-      <div style="background:var(--cream);border:1.5px solid ${state === 'next' ? '#FCD34D' : state === 'done' ? '#86EFAC' : 'var(--line)'};border-radius:16px;padding:14px">
+      <div style="background:var(--cream);border:1.5px solid ${state === 'next' ? '#F8DCC0' : state === 'done' ? '#F5C8D5' : 'var(--line)'};border-radius:16px;padding:14px">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:5px">
           <b style="font-family:var(--font-heading);font-size:0.85rem;font-weight:900;line-height:1.3">${title}</b>
           <span style="font-family:var(--font-heading);font-size:0.7rem;font-weight:800;color:var(--ink-3);flex-shrink:0">${date}</span>

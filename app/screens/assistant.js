@@ -44,21 +44,21 @@ window.ommyChatSendText = function(text) {
   const wrap = document.getElementById('chatWrap');
   if (!wrap || !text) return;
   const u = document.createElement('div');
-  u.style.cssText = 'max-width:85%;padding:12px 16px;border-radius:16px 16px 4px 16px;font-size:0.82rem;line-height:1.7;align-self:flex-end;background:linear-gradient(145deg,#10B981,#047857);color:#fff;';
+  u.style.cssText = 'max-width:85%;padding:12px 16px;border-radius:16px 16px 4px 16px;font-size:0.82rem;line-height:1.7;align-self:flex-end;background:linear-gradient(145deg,#D9829A,#B94F70);color:#fff;';
   u.textContent = text;
   wrap.appendChild(u);
   wrap.scrollTop = wrap.scrollHeight;
 
   const t = document.createElement('div');
-  t.style.cssText = 'max-width:85%;padding:14px 18px;border-radius:16px 16px 16px 4px;background:linear-gradient(135deg,#ECFDF5,#D1FAE5);border:1px solid #A7F3D0;align-self:flex-start;display:flex;gap:4px;';
-  t.innerHTML = '<span style="width:6px;height:6px;border-radius:50%;background:#059669;animation:ommyBlink 1.2s infinite"></span><span style="width:6px;height:6px;border-radius:50%;background:#059669;animation:ommyBlink 1.2s infinite .2s"></span><span style="width:6px;height:6px;border-radius:50%;background:#059669;animation:ommyBlink 1.2s infinite .4s"></span>';
+  t.style.cssText = 'max-width:85%;padding:14px 18px;border-radius:16px 16px 16px 4px;background:linear-gradient(135deg,#F2F9F4,#F8DFE6);border:1px solid #D5EAD9;align-self:flex-start;display:flex;gap:4px;';
+  t.innerHTML = '<span style="width:6px;height:6px;border-radius:50%;background:#C65D7B;animation:ommyBlink 1.2s infinite"></span><span style="width:6px;height:6px;border-radius:50%;background:#C65D7B;animation:ommyBlink 1.2s infinite .2s"></span><span style="width:6px;height:6px;border-radius:50%;background:#C65D7B;animation:ommyBlink 1.2s infinite .4s"></span>';
   wrap.appendChild(t);
   wrap.scrollTop = wrap.scrollHeight;
 
   setTimeout(() => {
     t.remove();
     const b = document.createElement('div');
-    b.style.cssText = 'max-width:85%;padding:12px 16px;border-radius:16px 16px 16px 4px;font-size:0.82rem;line-height:1.7;background:linear-gradient(135deg,#ECFDF5,#D1FAE5);color:var(--ink);border:1px solid #A7F3D0;';
+    b.style.cssText = 'max-width:85%;padding:12px 16px;border-radius:16px 16px 16px 4px;font-size:0.82rem;line-height:1.7;background:linear-gradient(135deg,#F2F9F4,#F8DFE6);color:var(--ink);border:1px solid #D5EAD9;';
     b.innerHTML = REPLIES[text] || 'سؤال رائع 🌸<br>لم أجد إجابة محددة. جرّبي إعادة الصياغة أو اسألي الطبيبة.';
     wrap.appendChild(b);
     wrap.scrollTop = wrap.scrollHeight;
@@ -85,7 +85,7 @@ const Q = [
 export function AssistantScreen() {
   return `
     <div style="grid-column:1/-1;width:100%">
-      <div style="background:linear-gradient(135deg,#10B981 0%,#047857 60%,#065F46 100%);border-radius:22px;padding:18px;color:#fff;position:relative;overflow:hidden;margin-bottom:18px;box-shadow:0 20px 40px rgba(16,185,129,.35)">
+      <div style="background:linear-gradient(135deg,#D9829A 0%,#B94F70 60%,#8B3D5A 100%);border-radius:22px;padding:18px;color:#fff;position:relative;overflow:hidden;margin-bottom:18px;box-shadow:0 20px 40px rgba(16,185,129,.35)">
         <div style="position:absolute;inset-inline-end:-70px;top:-70px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%)"></div>
         <div style="display:flex;align-items:center;gap:14px;position:relative;z-index:1">
           <span style="width:52px;height:52px;border-radius:16px;background:linear-gradient(145deg,rgba(255,255,255,.3),rgba(255,255,255,.15));display:grid;place-items:center;font-size:1.6rem;flex-shrink:0;border:1px solid rgba(255,255,255,.25)">💬</span>
@@ -98,7 +98,7 @@ export function AssistantScreen() {
 
       <div style="background:#FFF5E3;border:1px solid #E9C98B;color:#6B4A20;border-radius:14px;padding:12px;margin-bottom:12px;font-size:.75rem;line-height:1.7">تنبيه: هذا ليس مساعد ذكاء اصطناعي متصلًا ولا أداة تشخيص. الإجابات عامة وقد لا تناسب كل طفل. في الطوارئ أو عند صعوبة التنفس أو التشنج أو صعوبة الإيقاظ، اطلبي المساعدة الطبية العاجلة.</div>
       <div id="chatWrap" style="background:var(--cream);border:1.5px solid var(--line);border-radius:20px;padding:16px;height:400px;overflow-y:auto;margin-bottom:14px;display:flex;flex-direction:column;gap:12px">
-        <div style="max-width:85%;padding:12px 16px;border-radius:16px 16px 16px 4px;font-size:0.82rem;line-height:1.7;background:linear-gradient(135deg,#ECFDF5,#D1FAE5);color:var(--ink);border:1px solid #A7F3D0">أهلًا بكِ في أُمّي 🌸<br>اختاري سؤالًا شائعًا أو اكتبي سؤالًا من القائمة. هذه النسخة تعرض إجابات محفوظة مسبقًا.</div>
+        <div style="max-width:85%;padding:12px 16px;border-radius:16px 16px 16px 4px;font-size:0.82rem;line-height:1.7;background:linear-gradient(135deg,#F2F9F4,#F8DFE6);color:var(--ink);border:1px solid #D5EAD9">أهلًا بكِ في أُمّي 🌸<br>اختاري سؤالًا شائعًا أو اكتبي سؤالًا من القائمة. هذه النسخة تعرض إجابات محفوظة مسبقًا.</div>
       </div>
 
       <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">
@@ -106,7 +106,7 @@ export function AssistantScreen() {
       </div>
 
       <div style="display:flex;gap:8px;align-items:center">
-        <button onclick="ommyChatSend()" type="button" style="width:48px;height:48px;border-radius:14px;background:linear-gradient(145deg,#10B981,#047857);border:none;color:#fff;font-size:1.2rem;cursor:pointer;flex-shrink:0;font-weight:900">▶</button>
+        <button onclick="ommyChatSend()" type="button" style="width:48px;height:48px;border-radius:14px;background:linear-gradient(145deg,#D9829A,#B94F70);border:none;color:#fff;font-size:1.2rem;cursor:pointer;flex-shrink:0;font-weight:900">▶</button>
         <input type="text" id="chatInput" placeholder="اكتبي سؤالك..." style="flex:1;border:1.5px solid var(--line);background:var(--cream);border-radius:14px;padding:14px 16px;font-family:var(--font-body);font-size:0.86rem;color:var(--ink);outline:none" onkeydown="if(event.key==='Enter'){ommyChatSend();}" />
       </div>
     </div>

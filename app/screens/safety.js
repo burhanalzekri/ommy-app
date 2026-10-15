@@ -23,14 +23,14 @@ export function SafetyScreen() {
       ${sectionHeader('🛡️', 'تدابير السلامة في المنزل', '#F97316')}
       ${SafetyTips.map(t => tipCard(t)).join('')}
 
-      ${sectionHeader('⚠️', 'تحذيرات مهمة', '#DC2626')}
+      ${sectionHeader('⚠️', 'تحذيرات مهمة', '#E57070')}
       ${Warnings.map(w => warningCard(w)).join('')}
 
-      <div style="background:linear-gradient(135deg,#FEF2F2,#FEE2E2);border:1.5px solid #FCA5A5;border-radius:18px;padding:16px;margin-bottom:20px;display:flex;gap:12px">
+      <div style="background:linear-gradient(135deg,#FDF5F5,#FDEEEE);border:1.5px solid #F5C8C8;border-radius:18px;padding:16px;margin-bottom:20px;display:flex;gap:12px">
         <span style="font-size:1.5rem;flex-shrink:0">🚨</span>
         <div>
           <div style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:#B91C1C;margin-bottom:4px">أرقام الطوارئ</div>
-          <p style="font-size:0.78rem;color:#7F1D1D;line-height:1.7;margin:0">
+          <p style="font-size:0.78rem;color:#8B2020;line-height:1.7;margin:0">
             🚑 الإسعاف: <b>997</b><br>
             🚓 الشرطة: <b>999</b><br>
             🔥 الدفاع المدني: <b>998</b>
@@ -60,11 +60,11 @@ function tipCard(t) {
 
 function warningCard(w) {
   return `
-    <div style="display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#FEF2F2,#FEE2E2);border:1.5px solid #FCA5A5;border-radius:16px;padding:14px;margin-bottom:10px">
-      <span style="width:52px;height:52px;border-radius:16px;background:#fff;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0;border:1px solid #FCA5A5">${w.icon}</span>
+    <div style="display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#FDF5F5,#FDEEEE);border:1.5px solid #F5C8C8;border-radius:16px;padding:14px;margin-bottom:10px">
+      <span style="width:52px;height:52px;border-radius:16px;background:#fff;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0;border:1px solid #F5C8C8">${w.icon}</span>
       <div style="flex:1;text-align:start">
         <div style="font-family:var(--font-heading);font-size:0.88rem;font-weight:900;color:#B91C1C;margin-bottom:3px">${w.title}</div>
-        <div style="font-size:0.74rem;color:#7F1D1D;line-height:1.5">${w.desc}</div>
+        <div style="font-size:0.74rem;color:#8B2020;line-height:1.5">${w.desc}</div>
       </div>
     </div>
   `;

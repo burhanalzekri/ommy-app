@@ -24,7 +24,7 @@ export function HomeScreen() {
 
   return `
     <div style="grid-column:1/-1;width:100%">
-      <div style="background:linear-gradient(135deg,#10B981 0%,#059669 50%,#065F46 100%);border-radius:24px;padding:22px;color:#fff;position:relative;overflow:hidden;margin-bottom:20px;box-shadow:0 20px 45px rgba(16,185,129,.35)">
+      <div style="background:linear-gradient(135deg,#D9829A 0%,#C65D7B 50%,#8B3D5A 100%);border-radius:24px;padding:22px;color:#fff;position:relative;overflow:hidden;margin-bottom:20px;box-shadow:0 20px 45px rgba(16,185,129,.35)">
         <div style="position:absolute;inset-inline-end:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%)"></div>
         <div style="position:absolute;inset-inline-start:-50px;bottom:-80px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.08)"></div>
         <div style="position:relative;z-index:1">
@@ -46,44 +46,44 @@ export function HomeScreen() {
 
       ${sectionHeader('⚡', 'تسجيل سريع')}
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:8px">
-        ${quickBtn('🍼', 'رضعة', 'feed', '#DCFCE7', '#15803D')}
-        ${quickBtn('😴', 'نوم', 'sleep', '#DBEAFE', '#1E40AF')}
+        ${quickBtn('🍼', 'رضعة', 'feed', '#FDF0F3', '#B94F70')}
+        ${quickBtn('😴', 'نوم', 'sleep', '#F2EEFC', '#1E40AF')}
         ${quickBtn('💧', 'حفاض', 'diaper', '#CFFAFE', '#0E7490')}
-        ${quickBtn('💊', 'دواء', 'med', '#FEF3C7', '#B45309')}
+        ${quickBtn('💊', 'دواء', 'med', '#FDF3EB', '#C17A4A')}
       </div>
 
       ${sectionHeader('📝', 'آخر الأحداث')}
       ${renderRecent()}
 
       ${sectionHeader('📅', 'القادم')}
-      <div style="display:flex;gap:14px;align-items:center;background:var(--cream);border:1.5px solid #FCD34D;border-radius:18px;padding:16px;margin-bottom:12px">
-        <span style="width:52px;height:52px;border-radius:16px;background:linear-gradient(145deg,#FBBF24,#F59E0B);color:#fff;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0;box-shadow:0 8px 20px rgba(245,158,11,.3)">💉</span>
+      <div style="display:flex;gap:14px;align-items:center;background:var(--cream);border:1.5px solid #F8DCC0;border-radius:18px;padding:16px;margin-bottom:12px">
+        <span style="width:52px;height:52px;border-radius:16px;background:linear-gradient(145deg,#F5D5B8,#F5C8A8);color:#fff;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0;box-shadow:0 8px 20px rgba(245,158,11,.3)">💉</span>
         <div style="flex:1"><div style="font-family:var(--font-heading);font-size:0.92rem;font-weight:900;margin-bottom:3px">تطعيم الحصبة (MMR)</div><div style="font-size:0.74rem;color:var(--ink-3)">الجرعة الأولى</div></div>
-        <div style="text-align:center"><div style="font-family:var(--font-heading);font-size:1.4rem;font-weight:900;color:#B45309;line-height:1">5</div><div style="font-size:0.62rem;color:var(--ink-3);font-weight:700">أيام</div></div>
+        <div style="text-align:center"><div style="font-family:var(--font-heading);font-size:1.4rem;font-weight:900;color:#C17A4A;line-height:1">5</div><div style="font-size:0.62rem;color:var(--ink-3);font-weight:700">أيام</div></div>
       </div>
 
-      <div style="display:flex;gap:14px;align-items:center;background:var(--cream);border:1.5px solid #6EE7B7;border-radius:18px;padding:16px;margin-bottom:12px">
-        <span style="width:52px;height:52px;border-radius:16px;background:linear-gradient(145deg,#14B8A6,#0F766E);color:#fff;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0">🩺</span>
+      <div style="display:flex;gap:14px;align-items:center;background:var(--cream);border:1.5px solid #B8DFC7;border-radius:18px;padding:16px;margin-bottom:12px">
+        <span style="width:52px;height:52px;border-radius:16px;background:linear-gradient(145deg,#A8D5BA,#5C8F72);color:#fff;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0">🩺</span>
         <div style="flex:1"><div style="font-family:var(--font-heading);font-size:0.92rem;font-weight:900;margin-bottom:3px">متابعة الطبيبة</div><div style="font-size:0.74rem;color:var(--ink-3)">عيادة د. هدى</div></div>
-        <div style="text-align:center"><div style="font-family:var(--font-heading);font-size:1.4rem;font-weight:900;color:#0F766E;line-height:1">12</div><div style="font-size:0.62rem;color:var(--ink-3);font-weight:700">يوم</div></div>
+        <div style="text-align:center"><div style="font-family:var(--font-heading);font-size:1.4rem;font-weight:900;color:#5C8F72;line-height:1">12</div><div style="font-size:0.62rem;color:var(--ink-3);font-weight:700">يوم</div></div>
       </div>
 
       ${sectionHeader('💡', 'نصيحة اليوم')}
-      <div style="background:linear-gradient(135deg,#ECFDF5,#D1FAE5);border:1.5px solid #A7F3D0;border-radius:18px;padding:16px;margin-bottom:12px">
-        <div style="display:flex;align-items:center;gap:8px;font-family:var(--font-heading);font-size:0.88rem;font-weight:900;color:#047857;margin-bottom:8px"><span style="font-size:1.1rem">🌙</span> نوم أفضل</div>
-        <p style="font-size:0.78rem;color:#065F46;line-height:1.7;margin:0">جرّبي تقليل الإضاءة قبل النوم بساعة، وابدئي روتيناً ثابتاً من 3 خطوات — أثره يظهر خلال أسبوع.</p>
+      <div style="background:linear-gradient(135deg,#F2F9F4,#F8DFE6);border:1.5px solid #D5EAD9;border-radius:18px;padding:16px;margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:8px;font-family:var(--font-heading);font-size:0.88rem;font-weight:900;color:#B94F70;margin-bottom:8px"><span style="font-size:1.1rem">🌙</span> نوم أفضل</div>
+        <p style="font-size:0.78rem;color:#8B3D5A;line-height:1.7;margin:0">جرّبي تقليل الإضاءة قبل النوم بساعة، وابدئي روتيناً ثابتاً من 3 خطوات — أثره يظهر خلال أسبوع.</p>
       </div>
 
-      <div style="background:linear-gradient(135deg,#FEF3C7,#FDE68A);border:1.5px solid #FCD34D;border-radius:18px;padding:16px">
-        <div style="display:flex;align-items:center;gap:8px;font-family:var(--font-heading);font-size:0.88rem;font-weight:900;color:#92400E;margin-bottom:8px"><span style="font-size:1.1rem">🍎</span> تغذية</div>
-        <p style="font-size:0.78rem;color:#78350F;line-height:1.7;margin:0">أضيفي الخضار الملوّن إلى طبق ${baby.name} — الألوان تزيد فضوله للطعام.</p>
+      <div style="background:linear-gradient(135deg,#FDF3EB,#FBE5CE);border:1.5px solid #F8DCC0;border-radius:18px;padding:16px">
+        <div style="display:flex;align-items:center;gap:8px;font-family:var(--font-heading);font-size:0.88rem;font-weight:900;color:#A6653A;margin-bottom:8px"><span style="font-size:1.1rem">🍎</span> تغذية</div>
+        <p style="font-size:0.78rem;color:#8B5A38;line-height:1.7;margin:0">أضيفي الخضار الملوّن إلى طبق ${baby.name} — الألوان تزيد فضوله للطعام.</p>
       </div>
     </div>
   `;
 }
 
 function sectionHeader(icon, title) {
-  return `<div style="display:flex;align-items:center;gap:10px;margin:22px 0 14px"><span style="font-size:1.1rem">${icon}</span><span style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:var(--ink)">${title}</span><span style="flex:1;height:2px;background:linear-gradient(90deg,#10B981,transparent);border-radius:2px"></span></div>`;
+  return `<div style="display:flex;align-items:center;gap:10px;margin:22px 0 14px"><span style="font-size:1.1rem">${icon}</span><span style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:var(--ink)">${title}</span><span style="flex:1;height:2px;background:linear-gradient(90deg,#D9829A,transparent);border-radius:2px"></span></div>`;
 }
 
 function statBox(value, label) {
@@ -101,10 +101,10 @@ function renderRecent() {
     return `<div style="background:var(--cream);border:1.5px dashed var(--line);border-radius:18px;padding:28px 16px;text-align:center;margin-bottom:12px"><div style="font-size:2.2rem;margin-bottom:8px">📝</div><div style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:var(--ink-2);margin-bottom:4px">لا توجد أحداث اليوم</div><div style="font-size:0.75rem;color:var(--ink-3)">ابدئي بتسجيل أول رضعة أو نوم</div></div>`;
   }
   const meta = {
-    feed: { icon: '🍼', label: 'رضعة', bg: '#DCFCE7', color: '#15803D' },
-    sleep: { icon: '😴', label: 'نوم', bg: '#DBEAFE', color: '#1E40AF' },
+    feed: { icon: '🍼', label: 'رضعة', bg: '#FDF0F3', color: '#B94F70' },
+    sleep: { icon: '😴', label: 'نوم', bg: '#F2EEFC', color: '#1E40AF' },
     diaper: { icon: '💧', label: 'حفاض', bg: '#CFFAFE', color: '#0E7490' },
-    med: { icon: '💊', label: 'دواء', bg: '#FEF3C7', color: '#B45309' },
+    med: { icon: '💊', label: 'دواء', bg: '#FDF3EB', color: '#C17A4A' },
   };
   return recent.map(e => {
     const m = meta[e.type] || { icon: '📝', label: e.type, bg: 'var(--beige)', color: 'var(--ink-2)' };

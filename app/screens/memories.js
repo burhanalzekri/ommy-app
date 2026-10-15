@@ -134,7 +134,7 @@ function memoryCard(m) {
   const dateStr = date.toLocaleDateString('ar-EG', { day: 'numeric', month: 'long', year: 'numeric' });
   return `
     <div data-memory-search="${escapeHtml(`${m.title || ''} ${m.text || ''}`)}" style="background:var(--cream);border:1.5px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px;position:relative">
-      <button onclick="ommyDeleteMemory('${escapeHtml(m.id)}')" type="button" style="position:absolute;top:12px;inset-inline-end:12px;width:28px;height:28px;border-radius:50%;background:var(--red-soft);color:#DC2626;border:none;cursor:pointer;font-size:0.85rem;display:grid;place-items:center">✕</button>
+      <button onclick="ommyDeleteMemory('${escapeHtml(m.id)}')" type="button" style="position:absolute;top:12px;inset-inline-end:12px;width:28px;height:28px;border-radius:50%;background:var(--red-soft);color:#E57070;border:none;cursor:pointer;font-size:0.85rem;display:grid;place-items:center">✕</button>
       <div style="display:flex;gap:14px;align-items:flex-start">
         <span style="width:52px;height:52px;border-radius:16px;background:linear-gradient(145deg,#FCE7F3,#FBCFE8);display:grid;place-items:center;font-size:1.6rem;flex-shrink:0">${escapeHtml(m.icon || '💗')}</span>
         <div style="flex:1;min-width:0">

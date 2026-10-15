@@ -5,7 +5,7 @@
 export function AboutScreen() {
   return `
     <div style="grid-column:1/-1;width:100%">
-      <div style="background:linear-gradient(135deg,#10B981 0%,#047857 60%,#065F46 100%);border-radius:24px;padding:32px 20px;color:#fff;position:relative;overflow:hidden;margin-bottom:24px;box-shadow:0 20px 45px rgba(16,185,129,.35);text-align:center">
+      <div style="background:linear-gradient(135deg,#D9829A 0%,#B94F70 60%,#8B3D5A 100%);border-radius:24px;padding:32px 20px;color:#fff;position:relative;overflow:hidden;margin-bottom:24px;box-shadow:0 20px 45px rgba(16,185,129,.35);text-align:center">
         <div style="position:absolute;inset-inline-end:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%)"></div>
         <div style="position:relative;z-index:1">
           <div style="width:100px;height:100px;border-radius:28px;background:linear-gradient(145deg,rgba(255,255,255,.35),rgba(255,255,255,.15));display:grid;place-items:center;margin:0 auto 18px;font-size:3rem;border:1px solid rgba(255,255,255,.3);box-shadow:0 12px 30px rgba(0,0,0,.15)">🌸</div>
@@ -26,25 +26,25 @@ export function AboutScreen() {
 
       ${sectionHeader('✨', 'ما يميزنا')}
 
-      ${featureCard('🕌', 'محتوى إسلامي أصيل', 'أذكار، أدعية، وتلاوة هادئة بمراجعة شرعية', '#DCFCE7', '#15803D')}
-      ${featureCard('🌍', 'عربي 100%', 'لغة عربية سليمة، تصميم RTL، وثقافة محلية', '#DBEAFE', '#1E40AF')}
-      ${featureCard('👩‍⚕️', 'محتوى موثوق', 'معلومات طبية مُراجَعة من طبيبات أطفال', '#FEF3C7', '#B45309')}
-      ${featureCard('🔒', 'خصوصية تامة', 'بياناتك على جهازك فقط، لا سحابة، لا تتبع', '#FEE2E2', '#991B1B')}
-      ${featureCard('📱', 'بلا إعلانات', 'تجربة نظيفة تمامًا بلا إعلانات مزعجة', '#EDE9FE', '#6D28D9')}
+      ${featureCard('🕌', 'محتوى إسلامي أصيل', 'أذكار، أدعية، وتلاوة هادئة بمراجعة شرعية', '#FDF0F3', '#B94F70')}
+      ${featureCard('🌍', 'عربي 100%', 'لغة عربية سليمة، تصميم RTL، وثقافة محلية', '#F2EEFC', '#1E40AF')}
+      ${featureCard('👩‍⚕️', 'محتوى موثوق', 'معلومات طبية مُراجَعة من طبيبات أطفال', '#FDF3EB', '#C17A4A')}
+      ${featureCard('🔒', 'خصوصية تامة', 'بياناتك على جهازك فقط، لا سحابة، لا تتبع', '#FDEEEE', '#B83B3B')}
+      ${featureCard('📱', 'بلا إعلانات', 'تجربة نظيفة تمامًا بلا إعلانات مزعجة', '#FDF0F3', '#B94F70')}
       ${featureCard('💝', 'مجاني للأمهات', 'كل الميزات الأساسية مجانية للأبد', '#FFE4D6', '#A85C45')}
 
       ${sectionHeader('📊', 'إحصائيات')}
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px">
-        ${statCard('9', 'شاشات', '#10B981')}
+        ${statCard('9', 'شاشات', '#D9829A')}
         ${statCard('26', 'سؤالاً في المساعد', '#3B82F6')}
-        ${statCard('6', 'وصفات عربية', '#F59E0B')}
-        ${statCard('8', 'تطعيمات', '#8B5CF6')}
+        ${statCard('6', 'وصفات عربية', '#F5C8A8')}
+        ${statCard('8', 'تطعيمات', '#C65D7B')}
       </div>
 
       ${sectionHeader('🙏', 'شكرًا')}
-      <div style="background:linear-gradient(135deg,#ECFDF5,#D1FAE5);border:1.5px solid #A7F3D0;border-radius:18px;padding:20px;margin-bottom:20px;text-align:center">
-        <div style="font-family:var(--font-heading);font-size:0.95rem;font-weight:900;color:#047857;margin-bottom:8px">شكراً لكل أم عربية 🌸</div>
-        <p style="font-size:0.82rem;color:#065F46;line-height:1.8;margin:0">أنتِ البطلة الحقيقية. هذا التطبيق صدقة جارية لكل أم تحتاجه.</p>
+      <div style="background:linear-gradient(135deg,#F2F9F4,#F8DFE6);border:1.5px solid #D5EAD9;border-radius:18px;padding:20px;margin-bottom:20px;text-align:center">
+        <div style="font-family:var(--font-heading);font-size:0.95rem;font-weight:900;color:#B94F70;margin-bottom:8px">شكراً لكل أم عربية 🌸</div>
+        <p style="font-size:0.82rem;color:#8B3D5A;line-height:1.8;margin:0">أنتِ البطلة الحقيقية. هذا التطبيق صدقة جارية لكل أم تحتاجه.</p>
       </div>
 
       ${sectionHeader('📬', 'تواصلي معنا')}
@@ -68,7 +68,7 @@ export function AboutScreen() {
 }
 
 function sectionHeader(icon, title) {
-  return `<div style="display:flex;align-items:center;gap:10px;margin:22px 0 14px"><span style="font-size:1.1rem">${icon}</span><span style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:var(--ink)">${title}</span><span style="flex:1;height:2px;background:linear-gradient(90deg,#10B981,transparent);border-radius:2px"></span></div>`;
+  return `<div style="display:flex;align-items:center;gap:10px;margin:22px 0 14px"><span style="font-size:1.1rem">${icon}</span><span style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:var(--ink)">${title}</span><span style="flex:1;height:2px;background:linear-gradient(90deg,#D9829A,transparent);border-radius:2px"></span></div>`;
 }
 
 function featureCard(icon, title, desc, bg, color) {

@@ -32,9 +32,9 @@ const BAG_DATA = {
   baby: {
     title: 'للمولود',
     icon: '👶',
-    color: '#10B981',
-    bg: 'linear-gradient(135deg,#DCFCE7,#BBF7D0)',
-    border: '#86EFAC',
+    color: '#D9829A',
+    bg: 'linear-gradient(135deg,#FDF0F3,#F8DFE6)',
+    border: '#F5C8D5',
     items: [
       { id: 'b1', name: 'بادي (3 قطع)', essential: true },
       { id: 'b2', name: 'بيجاما كاملة (2)', essential: true },
@@ -54,8 +54,8 @@ const BAG_DATA = {
     title: 'الوثائق',
     icon: '📄',
     color: '#3B82F6',
-    bg: 'linear-gradient(135deg,#DBEAFE,#BFDBFE)',
-    border: '#93C5FD',
+    bg: 'linear-gradient(135deg,#F2EEFC,#BFDBFE)',
+    border: '#D5CDF0',
     items: [
       { id: 'd1', name: 'بطاقة التطعيم', essential: true },
       { id: 'd2', name: 'الأوراق الثبوتية', essential: true },
@@ -70,9 +70,9 @@ const BAG_DATA = {
   partner: {
     title: 'للأب / المرافق',
     icon: '👨',
-    color: '#8B5CF6',
-    bg: 'linear-gradient(135deg,#EDE9FE,#DDD6FE)',
-    border: '#C4B5FD',
+    color: '#C65D7B',
+    bg: 'linear-gradient(135deg,#FDF0F3,#F5D9E2)',
+    border: '#F0B8C8',
     items: [
       { id: 'p1', name: 'ملابس ليوم واحد', essential: false },
       { id: 'p2', name: 'شاحن هاتف إضافي', essential: true },
@@ -162,7 +162,7 @@ window.ommyShareBag = function() {
 window.ommyPrintBag = function() {
   const state = getBagState();
   let content = '<html dir="rtl"><head><meta charset="utf-8"><title>حقيبة الولادة</title>';
-  content += '<style>body{font-family:Arial;padding:20px;line-height:1.8}h1{color:#8B5CF6}h2{color:#EC4899;border-bottom:2px solid #eee;padding-bottom:8px}li{padding:4px 0}.done{color:#10B981;text-decoration:line-through}</style></head><body>';
+  content += '<style>body{font-family:Arial;padding:20px;line-height:1.8}h1{color:#C65D7B}h2{color:#EC4899;border-bottom:2px solid #eee;padding-bottom:8px}li{padding:4px 0}.done{color:#D9829A;text-decoration:line-through}</style></head><body>';
   content += '<h1>🧳 حقيبة الولادة</h1>';
 
   Object.entries(BAG_DATA).forEach(([key, cat]) => {
@@ -197,17 +197,17 @@ export function HospitalBagScreen() {
         border-radius:14px;margin-bottom:8px;cursor:pointer;
         transition:all .2s;font-family:var(--font-body);text-align:start;width:100%;
       }
-      .bag-item:hover { transform:translateX(-3px); border-color:#C4B5FD; }
-      .bag-item.done { background:linear-gradient(135deg,#DCFCE7,#BBF7D0); border-color:#86EFAC; }
-      .bag-item.done .bag-item-name { text-decoration:line-through; color:#15803D; }
+      .bag-item:hover { transform:translateX(-3px); border-color:#F0B8C8; }
+      .bag-item.done { background:linear-gradient(135deg,#FDF0F3,#F8DFE6); border-color:#F5C8D5; }
+      .bag-item.done .bag-item-name { text-decoration:line-through; color:#B94F70; }
       .bag-checkbox {
         width:26px;height:26px;border-radius:8px;border:2px solid var(--line);
         display:grid;place-items:center;flex-shrink:0;background:#fff;
         transition:all .2s;font-size:0.9rem;font-weight:900;color:transparent;
       }
       .bag-item.done .bag-checkbox {
-        background:linear-gradient(145deg,#10B981,#047857);
-        border-color:#047857;color:#fff;
+        background:linear-gradient(145deg,#D9829A,#B94F70);
+        border-color:#B94F70;color:#fff;
       }
     </style>
 
@@ -239,12 +239,12 @@ export function HospitalBagScreen() {
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
         <div style="background:var(--cream);border:1.5px solid var(--line);border-radius:16px;padding:14px;text-align:center">
           <div style="font-size:1.4rem;margin-bottom:6px">✅</div>
-          <div style="font-family:var(--font-heading);font-size:1.2rem;font-weight:900;color:#10B981" id="bagDone">${stats.done}</div>
+          <div style="font-family:var(--font-heading);font-size:1.2rem;font-weight:900;color:#D9829A" id="bagDone">${stats.done}</div>
           <div style="font-size:0.68rem;color:var(--ink-3);margin-top:4px;font-weight:700">جاهز</div>
         </div>
         <div style="background:var(--cream);border:1.5px solid var(--line);border-radius:16px;padding:14px;text-align:center">
           <div style="font-size:1.4rem;margin-bottom:6px">⭐</div>
-          <div style="font-family:var(--font-heading);font-size:1.2rem;font-weight:900;color:#F59E0B" id="bagEssentials">${stats.essentialsDone}/${stats.essentialsTotal}</div>
+          <div style="font-family:var(--font-heading);font-size:1.2rem;font-weight:900;color:#F5C8A8" id="bagEssentials">${stats.essentialsDone}/${stats.essentialsTotal}</div>
           <div style="font-size:0.68rem;color:var(--ink-3);margin-top:4px;font-weight:700">أساسيات</div>
         </div>
       </div>
@@ -252,8 +252,8 @@ export function HospitalBagScreen() {
       <!-- أزرار سريعة -->
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px">
         <button onclick="ommyShareBag()" type="button" style="padding:12px 6px;border:none;border-radius:14px;background:linear-gradient(145deg,#EC4899,#BE185D);color:#fff;font-family:var(--font-heading);font-weight:900;font-size:0.72rem;cursor:pointer;box-shadow:0 8px 18px rgba(236,72,153,.3)">📱 شاركي</button>
-        <button onclick="ommyPrintBag()" type="button" style="padding:12px 6px;border:1.5px solid #C4B5FD;border-radius:14px;background:var(--cream);color:#8B5CF6;font-family:var(--font-heading);font-weight:900;font-size:0.72rem;cursor:pointer">📄 اطبعي</button>
-        <button onclick="ommySpeakBagRemaining()" type="button" style="padding:12px 6px;border:1.5px solid #C4B5FD;border-radius:14px;background:var(--cream);color:#8B5CF6;font-family:var(--font-heading);font-weight:900;font-size:0.72rem;cursor:pointer">🔊 اسمعي</button>
+        <button onclick="ommyPrintBag()" type="button" style="padding:12px 6px;border:1.5px solid #F0B8C8;border-radius:14px;background:var(--cream);color:#C65D7B;font-family:var(--font-heading);font-weight:900;font-size:0.72rem;cursor:pointer">📄 اطبعي</button>
+        <button onclick="ommySpeakBagRemaining()" type="button" style="padding:12px 6px;border:1.5px solid #F0B8C8;border-radius:14px;background:var(--cream);color:#C65D7B;font-family:var(--font-heading);font-weight:900;font-size:0.72rem;cursor:pointer">🔊 اسمعي</button>
       </div>
 
       <!-- الأقسام -->
@@ -263,11 +263,11 @@ export function HospitalBagScreen() {
       ${renderCategory('partner', state)}
 
       <!-- نصيحة -->
-      <div style="background:linear-gradient(135deg,#FEF3C7,#FDE68A);border:1.5px solid #FCD34D;border-radius:18px;padding:16px;margin-bottom:20px;display:flex;gap:12px">
+      <div style="background:linear-gradient(135deg,#FDF3EB,#FBE5CE);border:1.5px solid #F8DCC0;border-radius:18px;padding:16px;margin-bottom:20px;display:flex;gap:12px">
         <span style="font-size:1.5rem;flex-shrink:0">💡</span>
         <div>
-          <div style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:#92400E;margin-bottom:4px">نصيحة ذهبية</div>
-          <p style="font-size:0.78rem;color:#78350F;line-height:1.7;margin:0">جهّزي الحقيبة قبل الأسبوع 36. ضعيها قرب باب المنزل — قد تحتاجينها في أي لحظة!</p>
+          <div style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:#A6653A;margin-bottom:4px">نصيحة ذهبية</div>
+          <p style="font-size:0.78rem;color:#8B5A38;line-height:1.7;margin:0">جهّزي الحقيبة قبل الأسبوع 36. ضعيها قرب باب المنزل — قد تحتاجينها في أي لحظة!</p>
         </div>
       </div>
 
@@ -296,7 +296,7 @@ function renderCategory(key, state) {
         <button class="bag-item ${state[item.id] ? 'done' : ''}" onclick="ommyBagToggle(this, '${item.id}')" type="button">
           <span class="bag-checkbox">✓</span>
           <span class="bag-item-name" style="flex:1;font-family:var(--font-heading);font-size:0.85rem;font-weight:700;color:var(--ink-2)">${item.name}</span>
-          ${item.essential ? '<span style="font-size:0.86rem;color:#F59E0B">⭐</span>' : ''}
+          ${item.essential ? '<span style="font-size:0.86rem;color:#F5C8A8">⭐</span>' : ''}
         </button>
       `).join('')}
     </div>

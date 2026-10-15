@@ -18,13 +18,13 @@ window.ommyReadStory = function(storyId, type) {
     message: `
       <div style="text-align:start">
         ${story.age ? `<div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
-          <span style="font-size:0.68rem;font-weight:900;background:#EDE9FE;color:#6D28D9;padding:4px 10px;border-radius:100px">👶 ${story.age}</span>
-          <span style="font-size:0.68rem;font-weight:900;background:#DBEAFE;color:#1E40AF;padding:4px 10px;border-radius:100px">⏱️ ${story.duration}</span>
+          <span style="font-size:0.68rem;font-weight:900;background:#FDF0F3;color:#B94F70;padding:4px 10px;border-radius:100px">👶 ${story.age}</span>
+          <span style="font-size:0.68rem;font-weight:900;background:#F2EEFC;color:#1E40AF;padding:4px 10px;border-radius:100px">⏱️ ${story.duration}</span>
         </div>` : ''}
-        <div id="storyText" style="font-size:0.9rem;line-height:2;color:var(--ink-2);padding:14px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border-radius:14px;border:1px solid #A7F3D0">${story.text}</div>
-        ${story.moral ? `<div style="margin-top:14px;padding:12px;background:#FEF3C7;border-radius:12px;text-align:center;font-weight:800;color:#92400E;font-size:0.86rem">🌟 العبرة: ${story.moral}</div>` : ''}
+        <div id="storyText" style="font-size:0.9rem;line-height:2;color:var(--ink-2);padding:14px;background:linear-gradient(135deg,#FDF6F8,#FDF0F3);border-radius:14px;border:1px solid #D5EAD9">${story.text}</div>
+        ${story.moral ? `<div style="margin-top:14px;padding:12px;background:#FDF3EB;border-radius:12px;text-align:center;font-weight:800;color:#A6653A;font-size:0.86rem">🌟 العبرة: ${story.moral}</div>` : ''}
         <div style="display:flex;gap:8px;margin-top:14px">
-          <button onclick="ommySpeakCurrent()" type="button" style="flex:1;padding:12px;border:none;border-radius:12px;background:linear-gradient(145deg,#8B5CF6,#6D28D9);color:#fff;font-family:var(--font-heading);font-weight:900;font-size:0.85rem;cursor:pointer">🔊 اقرأ بصوت</button>
+          <button onclick="ommySpeakCurrent()" type="button" style="flex:1;padding:12px;border:none;border-radius:12px;background:linear-gradient(145deg,#C65D7B,#B94F70);color:#fff;font-family:var(--font-heading);font-weight:900;font-size:0.85rem;cursor:pointer">🔊 اقرأ بصوت</button>
           <button onclick="ommyStopSpeak()" type="button" style="flex:1;padding:12px;border:none;border-radius:12px;background:var(--beige);color:var(--ink-2);font-family:var(--font-heading);font-weight:900;font-size:0.85rem;cursor:pointer">⏸️ أوقف</button>
         </div>
       </div>
@@ -55,8 +55,8 @@ window.ommyReadMetaphor = function(index) {
     title: m.icon + ' ' + m.title,
     message: `
       <div style="text-align:center">
-        <div style="font-size:0.95rem;line-height:1.9;color:#065F46;padding:16px;background:linear-gradient(135deg,#ECFDF5,#D1FAE5);border-radius:14px;font-weight:600">${m.text}</div>
-        <button onclick="ommySpeakCurrent()" type="button" style="width:100%;margin-top:14px;padding:12px;border:none;border-radius:12px;background:linear-gradient(145deg,#8B5CF6,#6D28D9);color:#fff;font-family:var(--font-heading);font-weight:900;font-size:0.85rem;cursor:pointer">🔊 اسمعي المثال</button>
+        <div style="font-size:0.95rem;line-height:1.9;color:#8B3D5A;padding:16px;background:linear-gradient(135deg,#F2F9F4,#F8DFE6);border-radius:14px;font-weight:600">${m.text}</div>
+        <button onclick="ommySpeakCurrent()" type="button" style="width:100%;margin-top:14px;padding:12px;border:none;border-radius:12px;background:linear-gradient(145deg,#C65D7B,#B94F70);color:#fff;font-family:var(--font-heading);font-weight:900;font-size:0.85rem;cursor:pointer">🔊 اسمعي المثال</button>
       </div>
     `,
     confirmText: 'حسناً',
@@ -69,7 +69,7 @@ export function StoriesScreen() {
 
   return `
     <div style="grid-column:1/-1;width:100%">
-      <div style="background:linear-gradient(135deg,#8B5CF6 0%,#6D28D9 60%,#4C1D95 100%);border-radius:24px;padding:24px 20px;color:#fff;position:relative;overflow:hidden;margin-bottom:22px;box-shadow:0 20px 45px rgba(139,92,246,.35)">
+      <div style="background:linear-gradient(135deg,#C65D7B 0%,#B94F70 60%,#8B3D5A 100%);border-radius:24px;padding:24px 20px;color:#fff;position:relative;overflow:hidden;margin-bottom:22px;box-shadow:0 20px 45px rgba(139,92,246,.35)">
         <div style="position:absolute;inset-inline-end:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.3),transparent 70%)"></div>
         <div style="position:relative;z-index:1">
           <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
@@ -86,7 +86,7 @@ export function StoriesScreen() {
         </div>
       </div>
 
-      ${sectionHeader('🌙', 'قصص ما قبل النوم', '#8B5CF6')}
+      ${sectionHeader('🌙', 'قصص ما قبل النوم', '#C65D7B')}
 
       ${BedtimeStories.map(s => storyCard(s, 'bedtime')).join('')}
 
@@ -94,17 +94,17 @@ export function StoriesScreen() {
 
       ${MomStories.map(s => storyCard(s, 'mom')).join('')}
 
-      ${sectionHeader('🌟', 'أمثلة وتشبيهات', '#F59E0B')}
+      ${sectionHeader('🌟', 'أمثلة وتشبيهات', '#F5C8A8')}
 
       ${Metaphors.map((m, i) => `
-        <button onclick="ommyReadMetaphor(${i})" type="button" style="width:100%;background:linear-gradient(135deg,#FEF3C7,#FDE68A);border:1.5px solid #FCD34D;border-radius:16px;padding:16px;margin-bottom:10px;cursor:pointer;text-align:start;font-family:var(--font-body);transition:all .25s">
+        <button onclick="ommyReadMetaphor(${i})" type="button" style="width:100%;background:linear-gradient(135deg,#FDF3EB,#FBE5CE);border:1.5px solid #F8DCC0;border-radius:16px;padding:16px;margin-bottom:10px;cursor:pointer;text-align:start;font-family:var(--font-body);transition:all .25s">
           <div style="display:flex;gap:12px;align-items:center">
             <span style="width:52px;height:52px;border-radius:16px;background:#fff;display:grid;place-items:center;font-size:1.6rem;flex-shrink:0">${m.icon}</span>
             <div style="flex:1">
-              <div style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:#92400E;margin-bottom:4px">${m.title}</div>
-              <div style="font-size:0.74rem;color:#78350F;line-height:1.5">${m.text.substring(0, 60)}...</div>
+              <div style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:#A6653A;margin-bottom:4px">${m.title}</div>
+              <div style="font-size:0.74rem;color:#8B5A38;line-height:1.5">${m.text.substring(0, 60)}...</div>
             </div>
-            <span style="font-size:1.2rem;color:#B45309">🔊</span>
+            <span style="font-size:1.2rem;color:#C17A4A">🔊</span>
           </div>
         </button>
       `).join('')}
@@ -118,9 +118,9 @@ function sectionHeader(icon, title, color) {
 
 function storyCard(s, type) {
   const isMom = type === 'mom';
-  const bg = isMom ? 'linear-gradient(135deg,#FCE7F3,#FBCFE8)' : 'linear-gradient(135deg,#EDE9FE,#DDD6FE)';
-  const border = isMom ? '#F9A8D4' : '#C4B5FD';
-  const color = isMom ? '#BE185D' : '#6D28D9';
+  const bg = isMom ? 'linear-gradient(135deg,#FCE7F3,#FBCFE8)' : 'linear-gradient(135deg,#FDF0F3,#F5D9E2)';
+  const border = isMom ? '#F9A8D4' : '#F0B8C8';
+  const color = isMom ? '#BE185D' : '#B94F70';
   return `
     <button onclick="ommyReadStory('${s.id}', '${type}')" type="button" style="width:100%;background:${bg};border:1.5px solid ${border};border-radius:18px;padding:16px;margin-bottom:10px;cursor:pointer;text-align:start;font-family:var(--font-body);transition:all .25s">
       <div style="display:flex;gap:14px;align-items:center">

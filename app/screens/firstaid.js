@@ -25,7 +25,7 @@ window.ommyFA = function(tile) {
 
   const stepsHtml = scenario.steps.map((s, i) => `
     <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;text-align:start">
-      <span style="width:28px;height:28px;border-radius:50%;background:linear-gradient(145deg,#DC2626,#991B1B);color:#fff;display:grid;place-items:center;font-family:var(--font-heading);font-weight:900;font-size:0.8rem;flex-shrink:0;margin-top:2px">${i+1}</span>
+      <span style="width:28px;height:28px;border-radius:50%;background:linear-gradient(145deg,#E57070,#B83B3B);color:#fff;display:grid;place-items:center;font-family:var(--font-heading);font-weight:900;font-size:0.8rem;flex-shrink:0;margin-top:2px">${i+1}</span>
       <span style="font-size:0.86rem;line-height:1.7;flex:1">${s}</span>
     </div>
   `).join('');
@@ -44,7 +44,7 @@ window.ommyFA = function(tile) {
 export function FirstAidScreen() {
   return `
     <div style="grid-column:1/-1;width:100%">
-      <div style="background:linear-gradient(135deg,#DC2626 0%,#991B1B 60%,#7F1D1D 100%);border-radius:22px;padding:20px;color:#fff;position:relative;overflow:hidden;margin-bottom:20px;box-shadow:0 20px 40px rgba(220,38,38,.4)">
+      <div style="background:linear-gradient(135deg,#E57070 0%,#B83B3B 60%,#8B2020 100%);border-radius:22px;padding:20px;color:#fff;position:relative;overflow:hidden;margin-bottom:20px;box-shadow:0 20px 40px rgba(220,38,38,.4)">
         <div style="position:absolute;inset-inline-end:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%)"></div>
         <div style="position:relative;z-index:1">
           <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
@@ -54,7 +54,7 @@ export function FirstAidScreen() {
               <div style="font-size:0.78rem;opacity:.9;margin-top:3px">اتصلي بخدمات الطوارئ المحلية أولاً</div>
             </div>
           </div>
-          <button onclick="ommyEmergencyInfo()" type="button" style="width:100%;background:#fff;color:#DC2626;border-radius:14px;padding:14px;font-family:var(--font-heading);font-weight:900;font-size:0.9rem;cursor:pointer;border:none;box-shadow:0 8px 20px rgba(0,0,0,.2)">🚨 إرشادات عند الطوارئ</button>
+          <button onclick="ommyEmergencyInfo()" type="button" style="width:100%;background:#fff;color:#E57070;border-radius:14px;padding:14px;font-family:var(--font-heading);font-weight:900;font-size:0.9rem;cursor:pointer;border:none;box-shadow:0 8px 20px rgba(0,0,0,.2)">🚨 إرشادات عند الطوارئ</button>
         </div>
       </div>
 
@@ -70,11 +70,11 @@ export function FirstAidScreen() {
         `).join('')}
       </div>
 
-      <div style="background:linear-gradient(135deg,#FEF2F2,#FEE2E2);border:1.5px solid #FCA5A5;border-radius:18px;padding:16px;margin-bottom:16px;display:flex;gap:12px">
+      <div style="background:linear-gradient(135deg,#FDF5F5,#FDEEEE);border:1.5px solid #F5C8C8;border-radius:18px;padding:16px;margin-bottom:16px;display:flex;gap:12px">
         <span style="font-size:1.5rem;flex-shrink:0">💡</span>
         <div>
           <div style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:#B91C1C;margin-bottom:4px">نصيحة مهمة</div>
-          <p style="font-size:0.78rem;color:#7F1D1D;line-height:1.7;margin:0">اضغطي على أي حالة لعرض الخطوات التفصيلية.</p>
+          <p style="font-size:0.78rem;color:#8B2020;line-height:1.7;margin:0">اضغطي على أي حالة لعرض الخطوات التفصيلية.</p>
         </div>
       </div>
 
@@ -87,5 +87,5 @@ export function FirstAidScreen() {
 }
 
 function sectionHeader(icon, title) {
-  return `<div style="display:flex;align-items:center;gap:10px;margin:22px 0 14px"><span style="font-size:1.1rem">${icon}</span><span style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:var(--ink)">${title}</span><span style="flex:1;height:2px;background:linear-gradient(90deg,#DC2626,transparent);border-radius:2px"></span></div>`;
+  return `<div style="display:flex;align-items:center;gap:10px;margin:22px 0 14px"><span style="font-size:1.1rem">${icon}</span><span style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:var(--ink)">${title}</span><span style="flex:1;height:2px;background:linear-gradient(90deg,#E57070,transparent);border-radius:2px"></span></div>`;
 }

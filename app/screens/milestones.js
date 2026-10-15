@@ -6,7 +6,7 @@ import { GrowthMilestones } from '../lib/content2.js';
 export function MilestonesScreen() {
   return `
     <div style="grid-column:1/-1;width:100%">
-      <div style="background:linear-gradient(135deg,#8B5CF6 0%,#6D28D9 60%,#4C1D95 100%);border-radius:24px;padding:24px 20px;color:#fff;position:relative;overflow:hidden;margin-bottom:22px;box-shadow:0 20px 45px rgba(139,92,246,.35)">
+      <div style="background:linear-gradient(135deg,#C65D7B 0%,#B94F70 60%,#8B3D5A 100%);border-radius:24px;padding:24px 20px;color:#fff;position:relative;overflow:hidden;margin-bottom:22px;box-shadow:0 20px 45px rgba(139,92,246,.35)">
         <div style="position:absolute;inset-inline-end:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.3),transparent 70%)"></div>
         <div style="position:relative;z-index:1">
           <div style="display:flex;align-items:center;gap:14px">
@@ -19,7 +19,7 @@ export function MilestonesScreen() {
         </div>
       </div>
 
-      ${sectionHeader('🌱', 'المراحل حسب العمر', '#8B5CF6')}
+      ${sectionHeader('🌱', 'المراحل حسب العمر', '#C65D7B')}
 
       <div style="position:relative;padding-inline-start:32px">
         <div style="position:absolute;inset-inline-start:11px;top:14px;bottom:14px;width:2px;background:var(--line);border-radius:2px"></div>
@@ -36,11 +36,11 @@ function sectionHeader(icon, title, color) {
 function milestoneItem(m, i) {
   const colors = [
     { dot: 'linear-gradient(145deg,#F472B6,#DB2777)', bg: '#FCE7F3', border: '#FBCFE8' },
-    { dot: 'linear-gradient(145deg,#A78BFA,#7C3AED)', bg: '#EDE9FE', border: '#DDD6FE' },
-    { dot: 'linear-gradient(145deg,#60A5FA,#2563EB)', bg: '#DBEAFE', border: '#BFDBFE' },
-    { dot: 'linear-gradient(145deg,#34D399,#059669)', bg: '#D1FAE5', border: '#A7F3D0' },
-    { dot: 'linear-gradient(145deg,#FBBF24,#D97706)', bg: '#FEF3C7', border: '#FDE68A' },
-    { dot: 'linear-gradient(145deg,#F87171,#DC2626)', bg: '#FEE2E2', border: '#FECACA' },
+    { dot: 'linear-gradient(145deg,#E8A3B6,#D9829A)', bg: '#FDF0F3', border: '#F5D9E2' },
+    { dot: 'linear-gradient(145deg,#60A5FA,#2563EB)', bg: '#F2EEFC', border: '#BFDBFE' },
+    { dot: 'linear-gradient(145deg,#E8A3B6,#C65D7B)', bg: '#F8DFE6', border: '#D5EAD9' },
+    { dot: 'linear-gradient(145deg,#F5D5B8,#C17A4A)', bg: '#FDF3EB', border: '#FBE5CE' },
+    { dot: 'linear-gradient(145deg,#F0A0A0,#E57070)', bg: '#FDEEEE', border: '#FECACA' },
   ];
   const c = colors[i % colors.length];
   return `
@@ -51,7 +51,7 @@ function milestoneItem(m, i) {
           <span style="width:44px;height:44px;border-radius:14px;background:${c.bg};display:grid;place-items:center;font-size:1.4rem;flex-shrink:0">${m.icon}</span>
           <div style="flex:1;text-align:start">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
-              <span style="font-family:var(--font-heading);font-size:0.72rem;font-weight:900;color:#6D28D9;background:#EDE9FE;padding:3px 9px;border-radius:100px">${m.age}</span>
+              <span style="font-family:var(--font-heading);font-size:0.72rem;font-weight:900;color:#B94F70;background:#FDF0F3;padding:3px 9px;border-radius:100px">${m.age}</span>
             </div>
             <div style="font-family:var(--font-heading);font-size:0.9rem;font-weight:900;color:var(--ink)">${m.title}</div>
           </div>

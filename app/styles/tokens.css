@@ -1,122 +1,182 @@
-:root {
-  /* ألوان أُمّي — وردي دافئ، كريمي، ولمسات مريمية */
-  --sand: #FFF8F7;
-  --cream: #FFFFFF;
-  --beige: #FBEAEC;
-  --beige-2: #F5D7DE;
-  --ink: #3F2C38;
-  --ink-2: #725565;
-  --ink-3: #A18A98;
-  --line: #F0DDE4;
-
-  --clay: #C65D7B;
-  --clay-deep: #A94463;
-  --clay-soft: #FCE8EE;
-  --rose: #DDA5B4;
-  --rose-deep: #B96C84;
-  --rose-soft: #FFF0F4;
-  --olive: #8BA895;
-  --olive-deep: #557C63;
-  --olive-soft: #EAF3EC;
-  --blue: #9A91C7;
-  --blue-deep: #7166A8;
-  --blue-soft: #F0EDFA;
-  --plum: #B786AD;
-  --plum-deep: #8C5D85;
-  --plum-soft: #F7ECF5;
-  --teal: #8DBDB5;
-  --teal-deep: #4D8C82;
-  --teal-soft: #E8F5F2;
-  --amber: #E7B96A;
-  --amber-deep: #9A6B2D;
-  --amber-soft: #FFF5E3;
-  --red: #C84E62;
-  --red-soft: #FDE9EC;
-
-  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
-  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
-  --radius-sm: 10px; --radius: 16px; --radius-lg: 24px; --radius-xl: 32px; --radius-full: 100px;
-  --shadow-sm: 0 3px 12px rgba(143, 77, 103, .07);
-  --shadow: 0 12px 32px rgba(143, 77, 103, .10);
-  --shadow-lg: 0 24px 60px rgba(143, 77, 103, .16);
-  --font-heading: 'Cairo', sans-serif;
-  --font-body: 'Tajawal', sans-serif;
-  --fs-xs: clamp(0.68rem, 0.62rem + 0.2vw, 0.75rem);
-  --fs-sm: clamp(0.78rem, 0.72rem + 0.25vw, 0.88rem);
-  --fs-base: clamp(0.9rem, 0.85rem + 0.3vw, 1.02rem);
-  --fs-lg: clamp(1.1rem, 0.95rem + 0.5vw, 1.3rem);
-  --fs-xl: clamp(1.4rem, 1.15rem + 1vw, 1.9rem);
-  --fs-2xl: clamp(1.9rem, 1.4rem + 2vw, 2.8rem);
-  --sidebar-w: 260px; --content-max: 1280px;
-  --ease: cubic-bezier(.2,.8,.2,1);
-  --dur-fast: .15s; --dur: .25s; --dur-slow: .5s;
-}
-
-/* === الوضع الليلي — تيل داكن غني === */
-[data-theme="dark"] {
-  --sand: #1F1820; --cream: #2A202B; --beige: #382A37; --beige-2: #4B3546;
-  --ink: #FFF0F4; --ink-2: #E2C8D5; --ink-3: #B89AAA; --line: #493343;
-  --clay: #E08AA4; --clay-deep: #C65D7B; --clay-soft: #422A38;
-  --rose: #D6A0B4; --rose-deep: #B96C84; --rose-soft: #3B2935;
-  --olive: #9ABCA3; --olive-deep: #78A486; --olive-soft: #293A30;
-  --blue: #B4A9E1; --blue-deep: #9587CF; --blue-soft: #322B46;
-  --plum: #D0A2C7; --plum-deep: #B786AD; --plum-soft: #3D2B3D;
-  --teal: #9ACBC2; --teal-deep: #6EAAA0; --teal-soft: #243B39;
-  --amber: #F0C77E; --amber-deep: #D6A454; --amber-soft: #3D3022;
-  --red: #F28A9B; --red-soft: #48272F;
-  --shadow-sm: 0 3px 12px rgba(0,0,0,.18); --shadow: 0 12px 32px rgba(0,0,0,.24); --shadow-lg: 0 24px 60px rgba(0,0,0,.34);
-}
-
-@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
-
 /* ============================================
-   وضع "ممطر وغائم" — Rainy Theme
+   أُمّي — Design Tokens
+   مستوحى من Nara Baby / Babee / Flo
    ============================================ */
+
+:root {
+  color-scheme: light;
+
+  /* ============ الخلفيات ============ */
+  --sand: #FDF8F6;          /* الخلفية الرئيسية — كريمي وردي */
+  --cream: #FFFFFF;          /* البطاقات */
+  --beige: #FBF0F2;          /* تمييز خفيف */
+  --beige-2: #F5E4E8;
+  --ink: #2E1F2B;            /* النصوص الرئيسية */
+  --ink-2: #6B5A63;          /* النصوص الثانوية */
+  --ink-3: #A8969E;          /* النصوص الخفيفة */
+  --line: #F0E2E6;
+
+  /* ============ الألوان الأساسية ============ */
+  --rose: #E8A3B6;           /* وردي دافئ — اللون الرئيسي */
+  --rose-deep: #C65D7B;
+  --rose-soft: #FDF0F3;
+
+  --clay: #D9829A;
+  --clay-deep: #B94F70;
+  --clay-soft: #FCEEF2;
+
+  --mint: #A8D5BA;           /* مينت ناعم */
+  --mint-deep: #5C8F72;
+  --mint-soft: #EDF7F0;
+
+  --lavender: #C9BFE5;       /* لافندر */
+  --lavender-deep: #7B68B8;
+  --lavender-soft: #F2EEFC;
+
+  --peach: #F5C8A8;          /* خوخي */
+  --peach-deep: #C17A4A;
+  --peach-soft: #FDF3EB;
+
+  --sky: #A8C8E5;            /* سماوي */
+  --sky-deep: #4A7BB8;
+  --sky-soft: #EEF4FC;
+
+  --sage: #B5C9A8;           /* حكيمي */
+  --sage-deep: #6B8055;
+  --sage-soft: #F2F6EE;
+
+  --honey: #F0C878;          /* ذهبي */
+  --honey-deep: #A87C22;
+  --honey-soft: #FDF6E5;
+
+  --red: #E57070;
+  --red-deep: #B83B3B;
+  --red-soft: #FDEEEE;
+
+  --olive: #B5C9A8;
+  --olive-deep: #6B8055;
+  --olive-soft: #F2F6EE;
+
+  --blue: #A8C8E5;
+  --blue-deep: #4A7BB8;
+  --blue-soft: #EEF4FC;
+
+  --plum: #C9BFE5;
+  --plum-deep: #7B68B8;
+  --plum-soft: #F2EEFC;
+
+  --teal: #A8D5D0;
+  --teal-deep: #4A8880;
+  --teal-soft: #EDF7F5;
+
+  --amber: #F0C878;
+  --amber-deep: #A87C22;
+  --amber-soft: #FDF6E5;
+
+  /* ============ التباعد ============ */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 28px; --sp-7: 40px; --sp-8: 56px;
+
+  /* ============ الحواف المستديرة ============ */
+  --radius-sm: 12px;
+  --radius: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 100px;
+
+  /* ============ الظلال ============ */
+  --shadow-sm: 0 2px 8px rgba(46,31,43,.04);
+  --shadow: 0 6px 20px rgba(46,31,43,.06);
+  --shadow-lg: 0 16px 40px rgba(46,31,43,.10);
+  --shadow-rose: 0 12px 32px rgba(198,93,123,.20);
+
+  /* ============ الخطوط ============ */
+  --font-heading: 'Cairo', 'Tajawal', sans-serif;
+  --font-body: 'Tajawal', 'Cairo', sans-serif;
+
+  --fs-xs:   clamp(0.68rem, 0.62rem + 0.2vw, 0.75rem);
+  --fs-sm:   clamp(0.78rem, 0.72rem + 0.25vw, 0.86rem);
+  --fs-base: clamp(0.88rem, 0.82rem + 0.3vw, 0.95rem);
+  --fs-lg:   clamp(1rem, 0.9rem + 0.5vw, 1.15rem);
+  --fs-xl:   clamp(1.15rem, 1rem + 0.7vw, 1.4rem);
+  --fs-2xl:  clamp(1.4rem, 1.15rem + 1.2vw, 1.85rem);
+  --fs-3xl:  clamp(1.85rem, 1.4rem + 2vw, 2.5rem);
+
+  /* ============ التخطيط ============ */
+  --sidebar-w: 260px;
+  --content-max: 1200px;
+
+  /* ============ الحركة ============ */
+  --ease: cubic-bezier(.4,0,.2,1);
+  --dur-fast: 0.15s;
+  --dur: 0.25s;
+  --dur-slow: 0.4s;
+}
+
+/* ============ الوضع الليلي ============ */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --sand: #1A1418;
+  --cream: #241C22;
+  --beige: #2E2429;
+  --beige-2: #3A2E34;
+  --ink: #F5EDF1;
+  --ink-2: #C9B8C0;
+  --ink-3: #8B7A82;
+  --line: #382C32;
+
+  --rose: #E8A3B6;
+  --rose-deep: #F0B5C5;
+  --rose-soft: #3A1F2A;
+
+  --clay: #D9829A;
+  --clay-deep: #E8A3B6;
+  --clay-soft: #3A1F2A;
+
+  --mint: #A8D5BA;
+  --mint-deep: #B8DFC7;
+  --mint-soft: #1F3028;
+
+  --lavender: #C9BFE5;
+  --lavender-deep: #D5CDF0;
+  --lavender-soft: #281F3A;
+
+  --peach: #F5C8A8;
+  --peach-deep: #F8D5BC;
+  --peach-soft: #3A2A1F;
+
+  --sky: #A8C8E5;
+  --sky-deep: #BCD5EC;
+  --sky-soft: #1E283A;
+
+  --sage: #B5C9A8;
+  --sage-deep: #C5D5B9;
+  --sage-soft: #232A1F;
+
+  --honey: #F0C878;
+  --honey-deep: #F5D5A0;
+  --honey-soft: #3A2F1A;
+
+  --red: #E57070;
+  --red-deep: #F08080;
+  --red-soft: #3A1E1E;
+
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.3);
+  --shadow: 0 6px 20px rgba(0,0,0,.4);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.5);
+  --shadow-rose: 0 12px 32px rgba(232,163,182,.15);
+}
+
+/* ============ وضع المطر ============ */
 [data-theme="rainy"] {
-  /* خلفيات رمادية-زرقاء هادئة */
-  --sand: #E8EDF2;
-  --cream: #F5F8FB;
-  --beige: #D6DEE7;
-  --beige-2: #C2CCD6;
-  --ink: #1F2937;
-  --ink-2: #4B5563;
-  --ink-3: #6B7280;
-  --line: #CDD6DF;
+  --sand: #EEF2F5;
+  --cream: #F8FBFC;
+  --ink: #1E2933;
+  --ink-2: #4A5866;
+  --line: #D8E0E8;
+}
 
-  /* الألوان الرئيسية: أزرق مطر */
-  --clay: #5B7C99;
-  --clay-deep: #3E5C75;
-  --clay-soft: #DCE6EF;
-
-  --rose: #7B8FA3;
-  --rose-deep: #566A7C;
-  --rose-soft: #E2E9F0;
-
-  --olive: #6B8E9E;
-  --olive-deep: #4A6B7A;
-  --olive-soft: #DDE7EC;
-
-  --blue: #4A6FA5;
-  --blue-deep: #2E4A78;
-  --blue-soft: #DCE6F2;
-
-  --plum: #6B7A9E;
-  --plum-deep: #48577A;
-  --plum-soft: #E0E5EF;
-
-  --teal: #5B8C8C;
-  --teal-deep: #3E6767;
-  --teal-soft: #DCEAEA;
-
-  --amber: #B8925A;
-  --amber-deep: #8A6A3A;
-  --amber-soft: #F0E6D4;
-
-  --red: #B85A5A;
-  --red-soft: #F0DADA;
-
-  /* ظلال رمادية */
-  --shadow-sm: 0 2px 8px rgba(31,41,55,.08);
-  --shadow: 0 10px 30px rgba(31,41,55,.12);
-  --shadow-lg: 0 26px 60px rgba(31,41,55,.20);
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
 }
