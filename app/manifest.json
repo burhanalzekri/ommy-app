@@ -1,0 +1,39 @@
+{
+  "name": "أُمّي — رفيق الأم العربية",
+  "short_name": "أُمّي",
+  "description": "من الحمل حتى المدرسة — رفيق الأم في كل خطوة",
+  "id": "app.ommy.mother",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFF8F7",
+  "theme_color": "#C65D7B",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": [
+    "health",
+    "lifestyle",
+    "parenting"
+  ],
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "حاسبة الحمل",
+      "url": "./index.html"
+    }
+  ]
+}

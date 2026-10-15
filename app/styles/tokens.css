@@ -1,0 +1,122 @@
+:root {
+  /* ألوان أُمّي — وردي دافئ، كريمي، ولمسات مريمية */
+  --sand: #FFF8F7;
+  --cream: #FFFFFF;
+  --beige: #FBEAEC;
+  --beige-2: #F5D7DE;
+  --ink: #3F2C38;
+  --ink-2: #725565;
+  --ink-3: #A18A98;
+  --line: #F0DDE4;
+
+  --clay: #C65D7B;
+  --clay-deep: #A94463;
+  --clay-soft: #FCE8EE;
+  --rose: #DDA5B4;
+  --rose-deep: #B96C84;
+  --rose-soft: #FFF0F4;
+  --olive: #8BA895;
+  --olive-deep: #557C63;
+  --olive-soft: #EAF3EC;
+  --blue: #9A91C7;
+  --blue-deep: #7166A8;
+  --blue-soft: #F0EDFA;
+  --plum: #B786AD;
+  --plum-deep: #8C5D85;
+  --plum-soft: #F7ECF5;
+  --teal: #8DBDB5;
+  --teal-deep: #4D8C82;
+  --teal-soft: #E8F5F2;
+  --amber: #E7B96A;
+  --amber-deep: #9A6B2D;
+  --amber-soft: #FFF5E3;
+  --red: #C84E62;
+  --red-soft: #FDE9EC;
+
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
+  --radius-sm: 10px; --radius: 16px; --radius-lg: 24px; --radius-xl: 32px; --radius-full: 100px;
+  --shadow-sm: 0 3px 12px rgba(143, 77, 103, .07);
+  --shadow: 0 12px 32px rgba(143, 77, 103, .10);
+  --shadow-lg: 0 24px 60px rgba(143, 77, 103, .16);
+  --font-heading: 'Cairo', sans-serif;
+  --font-body: 'Tajawal', sans-serif;
+  --fs-xs: clamp(0.68rem, 0.62rem + 0.2vw, 0.75rem);
+  --fs-sm: clamp(0.78rem, 0.72rem + 0.25vw, 0.88rem);
+  --fs-base: clamp(0.9rem, 0.85rem + 0.3vw, 1.02rem);
+  --fs-lg: clamp(1.1rem, 0.95rem + 0.5vw, 1.3rem);
+  --fs-xl: clamp(1.4rem, 1.15rem + 1vw, 1.9rem);
+  --fs-2xl: clamp(1.9rem, 1.4rem + 2vw, 2.8rem);
+  --sidebar-w: 260px; --content-max: 1280px;
+  --ease: cubic-bezier(.2,.8,.2,1);
+  --dur-fast: .15s; --dur: .25s; --dur-slow: .5s;
+}
+
+/* === الوضع الليلي — تيل داكن غني === */
+[data-theme="dark"] {
+  --sand: #1F1820; --cream: #2A202B; --beige: #382A37; --beige-2: #4B3546;
+  --ink: #FFF0F4; --ink-2: #E2C8D5; --ink-3: #B89AAA; --line: #493343;
+  --clay: #E08AA4; --clay-deep: #C65D7B; --clay-soft: #422A38;
+  --rose: #D6A0B4; --rose-deep: #B96C84; --rose-soft: #3B2935;
+  --olive: #9ABCA3; --olive-deep: #78A486; --olive-soft: #293A30;
+  --blue: #B4A9E1; --blue-deep: #9587CF; --blue-soft: #322B46;
+  --plum: #D0A2C7; --plum-deep: #B786AD; --plum-soft: #3D2B3D;
+  --teal: #9ACBC2; --teal-deep: #6EAAA0; --teal-soft: #243B39;
+  --amber: #F0C77E; --amber-deep: #D6A454; --amber-soft: #3D3022;
+  --red: #F28A9B; --red-soft: #48272F;
+  --shadow-sm: 0 3px 12px rgba(0,0,0,.18); --shadow: 0 12px 32px rgba(0,0,0,.24); --shadow-lg: 0 24px 60px rgba(0,0,0,.34);
+}
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* ============================================
+   وضع "ممطر وغائم" — Rainy Theme
+   ============================================ */
+[data-theme="rainy"] {
+  /* خلفيات رمادية-زرقاء هادئة */
+  --sand: #E8EDF2;
+  --cream: #F5F8FB;
+  --beige: #D6DEE7;
+  --beige-2: #C2CCD6;
+  --ink: #1F2937;
+  --ink-2: #4B5563;
+  --ink-3: #6B7280;
+  --line: #CDD6DF;
+
+  /* الألوان الرئيسية: أزرق مطر */
+  --clay: #5B7C99;
+  --clay-deep: #3E5C75;
+  --clay-soft: #DCE6EF;
+
+  --rose: #7B8FA3;
+  --rose-deep: #566A7C;
+  --rose-soft: #E2E9F0;
+
+  --olive: #6B8E9E;
+  --olive-deep: #4A6B7A;
+  --olive-soft: #DDE7EC;
+
+  --blue: #4A6FA5;
+  --blue-deep: #2E4A78;
+  --blue-soft: #DCE6F2;
+
+  --plum: #6B7A9E;
+  --plum-deep: #48577A;
+  --plum-soft: #E0E5EF;
+
+  --teal: #5B8C8C;
+  --teal-deep: #3E6767;
+  --teal-soft: #DCEAEA;
+
+  --amber: #B8925A;
+  --amber-deep: #8A6A3A;
+  --amber-soft: #F0E6D4;
+
+  --red: #B85A5A;
+  --red-soft: #F0DADA;
+
+  /* ظلال رمادية */
+  --shadow-sm: 0 2px 8px rgba(31,41,55,.08);
+  --shadow: 0 10px 30px rgba(31,41,55,.12);
+  --shadow-lg: 0 26px 60px rgba(31,41,55,.20);
+}

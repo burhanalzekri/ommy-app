@@ -1,0 +1,161 @@
+/* ============================================
+   نوافذ أنيقة — Modal Styles
+   ============================================ */
+
+.ommy-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity .25s cubic-bezier(.2,.8,.2,1);
+}
+
+.ommy-modal-overlay--show {
+  opacity: 1;
+}
+
+.ommy-modal {
+  background: var(--cream);
+  border-radius: 24px;
+  padding: 28px 24px 22px;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.4), 0 0 0 1px rgba(255,255,255,.05);
+  transform: scale(.9) translateY(20px);
+  opacity: 0;
+  transition: all .3s cubic-bezier(.2,.8,.2,1);
+}
+
+.ommy-modal-overlay--show .ommy-modal {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.ommy-modal__icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  font-size: 2.2rem;
+  margin: 0 auto 16px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.08);
+  border: 1.5px solid rgba(255,255,255,.5);
+}
+
+.ommy-modal__title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.ommy-modal__message {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--ink-2);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.ommy-modal__input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  background: var(--sand);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  outline: none;
+  margin-bottom: 20px;
+  transition: all .2s;
+}
+
+.ommy-modal__input:focus {
+  border-color: #10B981;
+  background: var(--cream);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+}
+
+.ommy-modal__input::placeholder {
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+.ommy-modal__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.ommy-modal__btn {
+  flex: 1;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 14px;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all .18s;
+  min-height: 48px;
+}
+
+.ommy-modal__btn:active {
+  transform: scale(.96);
+}
+
+.ommy-modal__btn--primary {
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(16, 185, 129, 0.3);
+}
+
+.ommy-modal__btn--primary:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 12px 28px rgba(16, 185, 129, 0.4);
+}
+
+.ommy-modal__btn--ghost {
+  background: var(--sand);
+  color: var(--ink-2);
+  border: 1.5px solid var(--line);
+}
+
+.ommy-modal__btn--ghost:hover {
+  background: var(--beige);
+  border-color: var(--beige-2);
+}
+
+/* === الوضع الليلي === */
+[data-theme="dark"] .ommy-modal {
+  background: #1E293B;
+  box-shadow: 0 30px 60px rgba(0,0,0,.7);
+}
+[data-theme="dark"] .ommy-modal__title { color: #F1F5F9; }
+[data-theme="dark"] .ommy-modal__message { color: #CBD5E1; }
+[data-theme="dark"] .ommy-modal__input {
+  background: #0F172A;
+  border-color: #334155;
+  color: #F1F5F9;
+}
+[data-theme="dark"] .ommy-modal__btn--ghost {
+  background: #0F172A;
+  color: #CBD5E1;
+  border-color: #334155;
+}
+
+/* === وضع المطر === */
+[data-theme="rainy"] .ommy-modal {
+  background: rgba(245, 248, 251, 0.98);
+}
