@@ -7,6 +7,9 @@ import { VaccinesScreen } from './screens/vaccines.js';
 import { AssistantScreen } from './screens/assistant.js';
 import { FirstAidScreen } from './screens/firstaid.js';
 import { SettingsScreen } from './screens/settings.js';
+import { BreastfeedingScreen } from './screens/breastfeeding.js';
+import { MentalHealthScreen } from './screens/mental-health.js';
+import './lib/mental-health.js';
 import { AboutScreen } from './screens/about.js';
 import { MemoriesScreen } from './screens/memories.js';
 import { SafetyScreen } from './screens/safety.js';
@@ -38,6 +41,10 @@ import './lib/tips.js';
 import './lib/multi-child.js';
 import './lib/notifications.js';
 import './lib/audio.js';
+import './lib/sync.js';
+import './lib/whatsapp.js';
+import './lib/family.js';
+import './lib/auto-sync.js';
 
 /* اجعلها متاحة عالمياً للأزرار inline */
 window.toast = toast;
@@ -362,6 +369,7 @@ function render() {
         ${renderTabBar()}
       </div>
     </div>
+    ${renderWhatsAppButton()}
   `;
   setTimeout(animations, 50);
 }
@@ -939,3 +947,76 @@ if ('serviceWorker' in navigator) {
     }
   });
 }
+
+/* ============================================
+   زر واتساب العائم + القائمة
+   ============================================ */
+function renderWhatsAppButton() {
+  return `
+    <button class="wa-float" id="waFloatBtn" type="button" onclick="ommyToggleWAMenu(event)" aria-label="مشاركة عبر واتساب">
+      <svg class="wa-float__icon" viewBox="0 0 24 24" fill="#fff">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </button>
+
+    <div class="wa-menu" id="waMenu">
+      <button class="wa-menu__item" type="button" onclick="ommyWAShare();ommyCloseWAMenu()">
+        <span class="wa-menu__icon wa-menu__icon--green">📊</span>
+        <span>ملخص اليوم</span>
+      </button>
+      <button class="wa-menu__item" type="button" onclick="ommyWAShareWeek();ommyCloseWAMenu()">
+        <span class="wa-menu__icon wa-menu__icon--blue">📅</span>
+        <span>ملخص الأسبوع</span>
+      </button>
+      <button class="wa-menu__item" type="button" onclick="ommyWASharePreg();ommyCloseWAMenu()">
+        <span class="wa-menu__icon wa-menu__icon--pink">🤰</span>
+        <span>تقدم الحمل</span>
+      </button>
+      <button class="wa-menu__item" type="button" onclick="ommyWAInvite();ommyCloseWAMenu()">
+        <span class="wa-menu__icon wa-menu__icon--purple">💌</span>
+        <span>دعوة صديقة للتطبيق</span>
+      </button>
+      <button class="wa-menu__item" type="button" onclick="ommyWAReportToDoctor();ommyCloseWAMenu()">
+        <span class="wa-menu__icon wa-menu__icon--honey">👩‍⚕️</span>
+        <span>تقرير للطبيبة</span>
+      </button>
+    </div>
+  `;
+}
+
+window.ommyToggleWAMenu = function(e) {
+  if (e) e.stopPropagation();
+  const menu = document.getElementById('waMenu');
+  if (!menu) return;
+  menu.classList.toggle('show');
+  if (window.haptic) window.haptic('light');
+};
+
+window.ommyCloseWAMenu = function() {
+  const menu = document.getElementById('waMenu');
+  if (menu) menu.classList.remove('show');
+};
+
+/* إغلاق القائمة عند النقر خارجها */
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('waMenu');
+  if (!menu || !menu.classList.contains('show')) return;
+  if (!e.target.closest('.wa-menu') && !e.target.closest('#waFloatBtn')) {
+    menu.classList.remove('show');
+  }
+});
+
+/* مشاركة التقرير للطبيبة عبر واتساب */
+window.ommyWAReportToDoctor = function() {
+  const text = `⚕️ *تقرير صحي — أُمّي*
+
+يرجى الاطلاع على تفاصيل حالة الطفل في التطبيق.
+
+يمكنك فتح التقرير الكامل عبر:
+📄 الإعدادات → تقرير الطبيبة → حفظ PDF
+
+━━━━━━━━━━━━━━
+أُمّي — رفيق الأم العربية 🌸`;
+
+  window.ommyWA.share(text);
+};

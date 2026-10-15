@@ -1148,3 +1148,214 @@ div[class*="weekly-chart"] {
   padding: 4px 10px;
   border-radius: 100px;
 }
+
+/* ============================================
+   WhatsApp Floating Button — زر واتساب عائم
+   ============================================ */
+
+
+
+
+
+
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 10px 30px rgba(37,211,102,.4), 0 4px 12px rgba(0,0,0,.15); }
+  50% { box-shadow: 0 10px 36px rgba(37,211,102,.6), 0 4px 12px rgba(0,0,0,.15); }
+}
+
+/* قائمة المشاركة */
+
+.wa-menu.show {
+  display: block;
+}
+@keyframes waMenuIn {
+  from { opacity: 0; transform: translateY(20px) scale(.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.wa-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: start;
+  transition: all 0.2s;
+}
+.wa-menu__item:hover {
+  background: var(--rose-soft);
+}
+.wa-menu__item:active {
+  transform: scale(.97);
+}
+
+.wa-menu__icon {
+  width: 36px; height: 36px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* ألوان قائمة WhatsApp */
+.wa-menu__icon--green { background: #DCFCE7; }
+.wa-menu__icon--blue { background: #DBEAFE; }
+.wa-menu__icon--pink { background: #FCE7F3; }
+.wa-menu__icon--purple { background: #EDE9FE; }
+.wa-menu__icon--honey { background: #FEF3C7; }
+
+/* زر مشاركة صغير داخل البطاقات */
+.wa-inline-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 100px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.68rem;
+  box-shadow: 0 4px 12px rgba(37,211,102,.3);
+  transition: all 0.2s;
+}
+.wa-inline-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37,211,102,.4);
+}
+.wa-inline-btn:active { transform: scale(.95); }
+
+/* إخفاء على الديسكتوب الصغير */
+@media (max-width: 640px) {
+  
+  
+}
+
+/* ============================================
+   WhatsApp Floating Button — زر يسار
+   ============================================ */
+.wa-float {
+  position: fixed;
+  bottom: 84px;
+  left: 16px !important;
+  right: auto !important;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(37,211,102,.4), 0 4px 12px rgba(0,0,0,.15);
+  z-index: 150;
+  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+  animation: waPulse 3s ease-in-out infinite;
+}
+.wa-float:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 16px 40px rgba(37,211,102,.5);
+}
+.wa-float:active { transform: scale(.95); }
+
+.wa-float__icon {
+  width: 30px; height: 30px;
+}
+
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 10px 30px rgba(37,211,102,.4), 0 4px 12px rgba(0,0,0,.15); }
+  50% { box-shadow: 0 10px 36px rgba(37,211,102,.6), 0 4px 12px rgba(0,0,0,.15); }
+}
+
+/* قائمة المشاركة — يسار أيضاً */
+.wa-menu {
+  position: fixed;
+  bottom: 150px;
+  left: 16px !important;
+  right: auto !important;
+  background: var(--cream);
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.2);
+  z-index: 151;
+  display: none;
+  min-width: 220px;
+  transform-origin: bottom left;
+  animation: waMenuIn 0.3s cubic-bezier(.4,0,.2,1);
+}
+.wa-menu.show {
+  display: block;
+}
+
+@keyframes waMenuIn {
+  from { opacity: 0; transform: translateY(20px) scale(.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.wa-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: start;
+  transition: all 0.2s;
+}
+.wa-menu__item:hover {
+  background: var(--rose-soft);
+}
+.wa-menu__item:active {
+  transform: scale(.97);
+}
+
+.wa-menu__icon {
+  width: 36px; height: 36px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.wa-menu__icon--green { background: #DCFCE7; }
+.wa-menu__icon--blue { background: #DBEAFE; }
+.wa-menu__icon--pink { background: #FCE7F3; }
+.wa-menu__icon--purple { background: #EDE9FE; }
+.wa-menu__icon--honey { background: #FEF3C7; }
+
+/* على الشاشات الصغيرة */
+@media (max-width: 640px) {
+  .wa-float {
+    bottom: 80px;
+    left: 14px !important;
+    right: auto !important;
+    width: 52px;
+    height: 52px;
+  }
+  .wa-menu {
+    bottom: 144px;
+    left: 14px !important;
+    right: auto !important;
+  }
+}

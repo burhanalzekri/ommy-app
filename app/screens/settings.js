@@ -21,6 +21,12 @@ export function SettingsScreen() {
         </div>
       </div>
 
+      ${sectionHeader('👨‍👩‍👧', 'المشاركة العائلية', '#EC4899')}
+      ${renderFamilySection()}
+
+      ${sectionHeader('☁️', 'المزامنة السحابية', '#8B5CF6')}
+      ${renderSyncSection()}
+
       ${sectionHeader('📄', 'تقرير الطبيبة', '#8B5CF6')}
       ${renderReportSection()}
 
@@ -118,6 +124,113 @@ function renderReportSection() {
       <div style="font-size:0.68rem;color:var(--ink-3);margin-top:10px;text-align:center;line-height:1.6">
         💡 لتحويله PDF: من نافذة الطباعة اختر "حفظ كـ PDF"
       </div>
+    </div>
+  `;
+}
+
+/* ============ قسم المزامنة ============ */
+function renderSyncSection() {
+  const sync = window.ommySync;
+  const configured = sync && sync.configured();
+  const status = sync ? sync.status() : null;
+
+  return `
+    <div class="card" style="padding:16px;margin-bottom:20px">
+      <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
+        <span style="width:52px;height:52px;border-radius:16px;background:var(--lavender-soft);display:grid;place-items:center;font-size:1.5rem;flex-shrink:0">☁️</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-family:var(--font-heading);font-weight:900;font-size:0.9rem;color:var(--lavender-deep);margin-bottom:4px">المزامنة السحابية</div>
+          <div style="font-size:0.74rem;color:var(--ink-2);line-height:1.6">
+            ${configured
+              ? 'ارفعي بياناتك للسحابة لتعود إليها من أي جهاز'
+              : 'لتفعيل المزامنة، اربطي التطبيق بـ Supabase من الإعدادات المتقدمة'}
+          </div>
+        </div>
+      </div>
+
+      ${window.ommyAutoSync ? `
+        <div style="background:var(--sand);border-radius:14px;padding:12px;margin-bottom:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-family:var(--font-heading);font-weight:800;font-size:0.82rem;color:var(--ink)">🔄 مزامنة تلقائية</div>
+              <div style="font-size:0.68rem;color:var(--ink-3);margin-top:2px">آخر مزامنة: ${window.ommyAutoSync.status().lastSyncLabel}</div>
+            </div>
+            <button onclick="ommyAutoSyncToggle(${!window.ommyAutoSync.status().enabled})" type="button" style="width:48px;height:28px;border-radius:100px;border:none;background:${window.ommyAutoSync.status().enabled ? 'linear-gradient(145deg,#8B5CF6,#6D28D9)' : 'var(--beige-2)'};cursor:pointer;position:relative">
+              <span style="position:absolute;top:3px;${window.ommyAutoSync.status().enabled ? 'left:3px;' : 'right:3px;'}width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.15)"></span>
+            </button>
+          </div>
+          <button onclick="ommyAutoSyncNow()" type="button" style="width:100%;margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--cream);color:var(--ink-2);font-family:var(--font-heading);font-weight:800;font-size:0.72rem;cursor:pointer">🔄 مزامنة الآن</button>
+        </div>
+      ` : ''}
+
+      ${configured ? `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+          <button onclick="ommySync.push()" type="button" style="padding:12px;border:none;border-radius:12px;background:linear-gradient(145deg,var(--lavender),var(--lavender-deep));color:#fff;font-family:var(--font-heading);font-weight:900;font-size:0.78rem;cursor:pointer">☁️ رفع</button>
+          <button onclick="ommySync.pull()" type="button" style="padding:12px;border:1.5px solid var(--lavender);border-radius:12px;background:var(--cream);color:var(--lavender-deep);font-family:var(--font-heading);font-weight:900;font-size:0.78rem;cursor:pointer">📥 سحب</button>
+        </div>
+        ${status ? `<div style="font-size:0.68rem;color:var(--ink-3);text-align:center;line-height:1.6">
+          معرف المستخدم: <code style="font-family:monospace;font-size:0.62rem;background:var(--beige);padding:2px 6px;border-radius:6px">${status.userId.substring(0, 16)}...</code>
+        </div>` : ''}
+      ` : `
+        <div style="text-align:center;padding:14px;background:var(--beige);border-radius:12px;font-size:0.72rem;color:var(--ink-2);line-height:1.7">
+          📖 لتفعيل المزامنة، اتبعي الدليل في <code>lib/sync.js</code>
+        </div>
+      `}
+    </div>
+  `;
+}
+
+/* ============ قسم المشاركة العائلية ============ */
+function renderFamilySection() {
+  const fam = window.ommyFamily;
+  if (!fam) return '';
+
+  const info = fam.info();
+  const myId = fam.myUserId();
+  const members = info.members || [];
+
+  return `
+    <div class="card" style="padding:16px;margin-bottom:20px">
+      <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
+        <span style="width:52px;height:52px;border-radius:16px;background:#FCE7F3;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0">👨‍👩‍👧</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-family:var(--font-heading);font-weight:900;font-size:0.9rem;color:#BE185D;margin-bottom:4px">المشاركة العائلية</div>
+          <div style="font-size:0.74rem;color:var(--ink-2);line-height:1.6">
+            شاركي بيانات الطفل مع الزوج/الشريكة
+          </div>
+        </div>
+      </div>
+
+      ${myId ? `
+        <div style="margin-bottom:12px">
+          <div style="font-size:0.68rem;font-weight:800;color:var(--ink-3);margin-bottom:6px">🆔 معرفك</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <code style="flex:1;font-family:monospace;font-size:0.68rem;background:var(--beige);padding:10px 12px;border-radius:12px;direction:ltr;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${myId}</code>
+            <button onclick="ommyFamilyCopyId()" type="button" style="padding:10px 14px;border:none;border-radius:12px;background:linear-gradient(145deg,#EC4899,#BE185D);color:#fff;font-family:var(--font-heading);font-weight:900;font-size:0.72rem;cursor:pointer">📋 نسخ</button>
+          </div>
+        </div>
+      ` : ''}
+
+      ${members.length > 0 ? `
+        <div style="margin-bottom:12px;padding:12px;background:var(--rose-soft);border-radius:12px">
+          <div style="font-size:0.68rem;font-weight:800;color:var(--clay-deep);margin-bottom:6px">👥 الأعضاء (${members.length})</div>
+          ${members.map(m => `
+            <div style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:0.72rem">
+              <span style="width:8px;height:8px;border-radius:50%;background:var(--mint-deep);flex-shrink:0"></span>
+              <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:ltr;text-align:start">${m.userId}</span>
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <button onclick="ommyFamilyJoin()" type="button" style="padding:12px;border:none;border-radius:12px;background:linear-gradient(145deg,#EC4899,#BE185D);color:#fff;font-family:var(--font-heading);font-weight:900;font-size:0.78rem;cursor:pointer">🔗 انضمي</button>
+        <button onclick="ommyFamilyGenerateCode()" type="button" style="padding:12px;border:1.5px solid #EC4899;border-radius:12px;background:var(--cream);color:#BE185D;font-family:var(--font-heading);font-weight:900;font-size:0.78rem;cursor:pointer">🎫 رمز الدعوة</button>
+      </div>
+
+      ${info.isSharing ? `
+        <button onclick="ommyFamilyStop()" type="button" style="width:100%;margin-top:8px;padding:10px;border:1.5px solid var(--line);border-radius:12px;background:var(--cream);color:var(--red-deep);font-family:var(--font-heading);font-weight:800;font-size:0.72rem;cursor:pointer">إيقاف المشاركة</button>
+      ` : ''}
     </div>
   `;
 }
