@@ -1,6 +1,7 @@
 /* ============================================
    شاشة اليوم — نسخة مستقرة
    ============================================ */
+import { renderAgeHero, startAgeTimer, stopAgeTimer } from '../lib/age-hero.js';
 import { LogStore, BabyStore } from '../lib/storage.js';
 import { Children } from '../lib/settings.js';
 import { Timer } from '../lib/timer.js';
@@ -49,6 +50,8 @@ export function HomeScreen() {
           ${heroStat('💊', summary.meds, 'أدوية')}
         </div>
       </div>
+
+      ${renderAgeHero()}
 
       ${renderSummaryCard()}
 

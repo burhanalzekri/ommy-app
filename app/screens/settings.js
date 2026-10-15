@@ -234,3 +234,87 @@ function renderFamilySection() {
     </div>
   `;
 }
+
+/* ============ قسم الأطفال (جديد) ============ */
+function renderChildrenSection() {
+  const manager = window.ommyChildManager;
+  if (!manager) return '';
+
+  const kids = manager.all();
+  const active = manager.active();
+
+  return `
+    <div class="card" style="padding:16px;margin-bottom:20px">
+      ${kids.map(k => {
+        const age = k.birthDate ? manager.preciseAge(k.birthDate) : null;
+        const isActive = k.id === active?.id;
+        const genderIcon = k.gender === 'girl' ? '👧' : '👶';
+
+        return `
+          <div style="display:flex;gap:12px;align-items:center;padding:12px;border:2px solid ${isActive ? 'var(--rose)' : 'var(--line)'};border-radius:16px;margin-bottom:10px;background:${isActive ? 'linear-gradient(135deg,var(--rose-soft),var(--lavender-soft))' : 'var(--cream)'};transition:all .2s">
+            <button onclick="ommySwitchChildFromSettings('${k.id}')" type="button" style="width:48px;height:48px;border-radius:14px;background:${isActive ? 'linear-gradient(145deg,var(--rose),var(--clay-deep))' : 'var(--rose-soft)'};color:${isActive ? '#fff' : 'var(--clay-deep)'};display:grid;place-items:center;font-size:1.5rem;flex-shrink:0;border:none;cursor:pointer">${genderIcon}</button>
+
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                <b style="font-family:var(--font-heading);font-weight:900;font-size:0.9rem;color:var(--ink)">${k.name}</b>
+                ${isActive ? '<span style="font-size:0.6rem;font-weight:900;color:#fff;background:var(--clay-deep);padding:2px 8px;border-radius:100px">نشط</span>' : ''}
+              </div>
+              <div style="font-size:0.7rem;color:var(--ink-3);line-height:1.5">
+                📅 ${k.birthDate || 'تاريخ غير محدد'}
+                ${age ? '<br>🎂 ' + age.label : ''}
+                ${k.weight ? '<br>⚖️ ' + k.weight + ' كجم' : ''}
+              </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <button onclick="ommyEditChild('${k.id}')" type="button" style="width:34px;height:34px;border-radius:10px;background:var(--cream);border:1.5px solid var(--line);color:var(--ink-2);cursor:pointer;font-size:0.9rem;display:grid;place-items:center">✏️</button>
+              ${kids.length > 1 ? `<button onclick="ommyDeleteChild('${k.id}')" type="button" style="width:34px;height:34px;border-radius:10px;background:var(--red-soft);border:1.5px solid var(--red);color:var(--red-deep);cursor:pointer;font-size:0.9rem;display:grid;place-items:center">🗑️</button>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('')}
+
+      <button onclick="ommyOpenAddChildForm()" type="button" style="width:100%;padding:14px;border:2px dashed var(--rose);background:transparent;border-radius:16px;cursor:pointer;font-family:var(--font-heading);font-weight:900;font-size:0.85rem;color:var(--clay-deep);margin-top:6px">➕ إضافة طفل جديد</button>
+    </div>
+  `;
+}
+
+window.ommySwitchChildFromSettings = function(id) {
+  const res = window.ommyChildManager.switchTo(id);
+  if (res.error) {
+    if (window.toast) window.toast(res.error, { type: 'error' });
+    return;
+  }
+  if (window.haptic) window.haptic('success');
+  if (window.ommySound?.success) window.ommySound.success();
+  if (window.toast) window.toast('✅ ' + res.child.name + ' نشط الآن', { type: 'success', duration: 1800 });
+  if (window.ommyRefresh) setTimeout(() => window.ommyRefresh(), 200);
+};
+
+/* استخدم النموذج الجديد الكامل */
+window.ommyEditChild = function(id) {
+  if (window.ommyEditChildForm) {
+    window.ommyEditChildForm(id);
+  }
+};
+
+window.ommyDeleteChild = function(id) {
+  const manager = window.ommyChildManager;
+  const child = manager.all().find(k => k.id === id);
+  if (!child) return;
+
+  if (window.ommyConfirm) {
+    window.ommyConfirm('حذف ' + child.name + '؟', 'سيتم حذف كل بيانات هذا الطفل', {
+      danger: true, confirmText: 'احذفي', cancelText: 'إلغاء'
+    }).then(ok => {
+      if (!ok) return;
+      const res = manager.remove(id);
+      if (res.error) {
+        if (window.toast) window.toast(res.error, { type: 'warning' });
+        return;
+      }
+      if (window.toast) window.toast('🗑️ تم الحذف', { type: 'success' });
+      if (window.ommyRefresh) window.ommyRefresh();
+    });
+  }
+};

@@ -150,3 +150,306 @@
 .tl-badge.done { background: var(--olive-soft); color: var(--olive-deep); }
 .tl-badge.next { background: var(--amber-soft); color: var(--amber-deep); }
 .tl-badge.later { background: var(--beige); color: var(--ink-2); }
+
+/* ============================================
+   Vaccine Tracker — تصميم ذكي
+   ============================================ */
+.vac-hero-smart {
+  background: linear-gradient(135deg, #F5C8A8 0%, #C17A4A 60%, #8B5A38 100%);
+  border-radius: 24px;
+  padding: 22px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 20px 45px rgba(193,122,74,.35);
+}
+.vac-hero-smart::before {
+  content: "";
+  position: absolute;
+  inset-inline-end: -70px;
+  top: -70px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.3), transparent 70%);
+}
+
+.vac-progress-ring {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: conic-gradient(#fff 0%, #fff var(--p, 0%), rgba(255,255,255,.2) var(--p, 0%), rgba(255,255,255,.2) 100%);
+  display: grid;
+  place-items: center;
+  position: relative;
+  margin: 0 auto 12px;
+}
+.vac-progress-ring::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #C17A4A, #8B5A38);
+}
+.vac-progress-ring span {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #fff;
+}
+
+.vac-timeline {
+  position: relative;
+  padding-inline-start: 32px;
+}
+.vac-timeline::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 10px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: var(--line);
+  border-radius: 2px;
+}
+
+.vac-item {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.vac-item::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: -26px;
+  top: 18px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--beige-2);
+  border: 3px solid var(--sand);
+  z-index: 1;
+}
+
+.vac-item.done::before {
+  background: linear-gradient(145deg, var(--mint), var(--mint-deep));
+  box-shadow: 0 0 0 4px var(--mint-soft);
+}
+.vac-item.due::before {
+  background: linear-gradient(145deg, var(--rose), var(--clay-deep));
+  box-shadow: 0 0 0 5px var(--rose-soft);
+  animation: vacPulse 2s ease-in-out infinite;
+}
+.vac-item.soon::before {
+  background: linear-gradient(145deg, var(--honey), var(--honey-deep));
+  box-shadow: 0 0 0 4px var(--honey-soft);
+}
+.vac-item.late::before {
+  background: linear-gradient(145deg, var(--red), var(--red-deep));
+  box-shadow: 0 0 0 5px var(--red-soft);
+}
+.vac-item.upcoming::before {
+  background: var(--beige-2);
+}
+
+@keyframes vacPulse {
+  0%, 100% { box-shadow: 0 0 0 5px var(--rose-soft); }
+  50% { box-shadow: 0 0 0 8px rgba(217,130,154,.15); }
+}
+
+.vac-card {
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  padding: 14px;
+  transition: all .2s;
+}
+.vac-item.done .vac-card {
+  background: linear-gradient(135deg, var(--cream), var(--mint-soft));
+  border-color: var(--mint);
+  opacity: 0.85;
+}
+.vac-item.due .vac-card {
+  background: linear-gradient(135deg, var(--cream), var(--rose-soft));
+  border-color: var(--rose);
+  box-shadow: 0 8px 24px rgba(198,93,123,.15);
+}
+.vac-item.soon .vac-card {
+  background: linear-gradient(135deg, var(--cream), var(--honey-soft));
+  border-color: var(--honey);
+}
+.vac-item.late .vac-card {
+  background: linear-gradient(135deg, var(--cream), var(--red-soft));
+  border-color: var(--red);
+}
+
+.vac-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.vac-card__title {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--ink);
+  flex: 1;
+  min-width: 0;
+  line-height: 1.3;
+}
+.vac-card__age {
+  font-size: 0.68rem;
+  font-weight: 900;
+  color: var(--clay-deep);
+  background: var(--rose-soft);
+  padding: 3px 10px;
+  border-radius: 100px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.vac-item.done .vac-card__age {
+  background: var(--mint-soft);
+  color: var(--mint-deep);
+}
+.vac-item.soon .vac-card__age {
+  background: var(--honey-soft);
+  color: var(--honey-deep);
+}
+.vac-item.late .vac-card__age {
+  background: var(--red-soft);
+  color: var(--red-deep);
+}
+
+.vac-card__vaccines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+.vac-card__vaccines span {
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: var(--beige);
+  color: var(--ink-2);
+  padding: 3px 9px;
+  border-radius: 100px;
+}
+.vac-item.done .vac-card__vaccines span {
+  background: var(--mint-soft);
+  color: var(--mint-deep);
+}
+.vac-item.due .vac-card__vaccines span {
+  background: var(--rose-soft);
+  color: var(--clay-deep);
+}
+.vac-item.late .vac-card__vaccines span {
+  background: var(--red-soft);
+  color: var(--red-deep);
+}
+
+.vac-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+.vac-card__date {
+  font-size: 0.65rem;
+  color: var(--ink-3);
+  font-weight: 700;
+}
+.vac-card__countdown {
+  font-size: 0.68rem;
+  font-weight: 900;
+  color: var(--clay-deep);
+}
+.vac-card__countdown.soon {
+  color: var(--honey-deep);
+}
+.vac-card__countdown.late {
+  color: var(--red-deep);
+}
+.vac-card__countdown.done {
+  color: var(--mint-deep);
+}
+
+.vac-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: none;
+  border-radius: 100px;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.72rem;
+  cursor: pointer;
+  transition: all .2s;
+}
+.vac-check.done-btn {
+  background: linear-gradient(145deg, var(--mint), var(--mint-deep));
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(92,143,114,.3);
+}
+.vac-check.done-btn:active {
+  transform: scale(.95);
+}
+.vac-check.undo-btn {
+  background: var(--beige);
+  color: var(--ink-2);
+  border: 1px solid var(--line);
+}
+.vac-check.undo-btn:hover {
+  background: var(--beige-2);
+}
+
+.vac-alert {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+.vac-alert.late {
+  background: linear-gradient(135deg, var(--red-soft), #FECACA);
+  border: 1.5px solid var(--red);
+}
+.vac-alert.soon {
+  background: linear-gradient(135deg, var(--honey-soft), #FDE68A);
+  border: 1.5px solid var(--honey);
+}
+.vac-alert__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  background: #fff;
+}
+.vac-alert__body {
+  flex: 1;
+  min-width: 0;
+}
+.vac-alert__title {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+.vac-alert.late .vac-alert__title { color: var(--red-deep); }
+.vac-alert.soon .vac-alert__title { color: var(--honey-deep); }
+.vac-alert__text {
+  font-size: 0.72rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}

@@ -22,6 +22,7 @@ import { StoriesScreen } from './screens/stories.js';
 import { MedicationsScreen } from './screens/medications.js';
 import { PregnancyCalcScreen } from './screens/pregnancy-calc.js';
 import { HospitalBagScreen } from './screens/hospital-bag.js';
+import { ChildrenScreen } from './screens/children.js';
 import './lib/badges.js';
 import './lib/medications.js';
 import './lib/cloud.js';
@@ -44,6 +45,12 @@ import './lib/notifications.js';
 import './lib/audio.js';
 import './lib/sync.js';
 import './lib/whatsapp.js';
+import './lib/children.js';
+import './lib/add-child-form.js';
+import './lib/child-switcher-ui.js';
+import './lib/age-hero.js';
+import './lib/growth.js';
+import './lib/vaccine-scheduler.js';
 import './lib/family.js';
 import './lib/auto-sync.js';
 
@@ -59,6 +66,7 @@ window.haptic = haptic;
 
 const routes = {
   home:      { label: 'اليوم',     icon: '🏠', view: HomeScreen },
+  children:  { label: 'الأطفال',   icon: '👶', view: ChildrenScreen },
   nutrition: { label: 'التغذية',   icon: '🍲', view: NutritionScreen },
   sleep:     { label: 'النوم',     icon: '🌙', view: SleepScreen },
   pregnancy: { label: 'الحمل',     icon: '🤰', view: PregnancyScreen },
@@ -375,6 +383,7 @@ function render() {
     ${renderWhatsAppButton()}
   `;
   setTimeout(animations, 50);
+  setTimeout(manageAgeTimer, 150);
 }
 
 function animations() {
@@ -1023,3 +1032,59 @@ window.ommyWAReportToDoctor = function() {
 
   window.ommyWA.share(text);
 };
+
+/* ============ مبدّل الأطفال ============ */
+function renderChildSwitcher() {
+  if (!window.ommyChildManager) return '';
+
+  const kids = window.ommyChildManager.all();
+  const active = window.ommyChildManager.active();
+  if (!active) return '';
+
+  const age = active.birthDate ? window.ommyChildManager.preciseAge(active.birthDate) : null;
+  const genderIcon = active.gender === 'girl' ? '👧' : '👶';
+  const childCount = kids.length;
+
+  /* عمر مختصر — سنة/شهر */
+  let shortAge = '—';
+  if (age) {
+    if (age.years > 0) shortAge = age.years + (age.years === 1 ? ' سنة' : ' سنوات');
+    else if (age.months > 0) shortAge = age.months + (age.months === 1 ? ' شهر' : ' شهور');
+    else shortAge = age.days + (age.days === 1 ? ' يوم' : ' أيام');
+  }
+
+  return `
+    <div class="app-bar__child-switcher" onclick="ommyOpenChildSwitcher()" style="position:relative">
+      <span class="app-bar__child-avatar">${genderIcon}</span>
+      <div class="app-bar__child-info">
+        <span class="app-bar__child-name">${active.name}</span>
+        <span class="app-bar__child-age">${shortAge}</span>
+      </div>
+      <span class="app-bar__child-caret">▾</span>
+      ${childCount > 1 ? `<span class="app-bar__child-badge">${childCount}</span>` : ''}
+    </div>
+  `;
+}
+
+/* ============ تشغيل/إيقاف مؤقّت العمر ============ */
+function manageAgeTimer() {
+  const route = state.route;
+  if (!route) return;
+
+  const isHome = route.id === 'home' || route.path === '/' || route.label === 'اليوم';
+
+  if (isHome && window.ommyAgeHero?.start) {
+    setTimeout(() => {
+      window.ommyAgeHero.start();
+    }, 100);
+  } else if (window.ommyAgeHero?.stop) {
+    window.ommyAgeHero.stop();
+  }
+}
+
+/* تشغيل المؤقت عند أول تحميل */
+if (typeof window !== 'undefined') {
+  window.addEventListener('load', () => {
+    setTimeout(manageAgeTimer, 500);
+  });
+}
