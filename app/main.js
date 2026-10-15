@@ -17,6 +17,7 @@ import { MilestonesScreen } from './screens/milestones.js';
 import { ActivitiesScreen } from './screens/activities.js';
 import { DuasScreen } from './screens/duas.js';
 import { SelfCareScreen } from './screens/selfcare.js';
+import './lib/selfcare.js';
 import { StoriesScreen } from './screens/stories.js';
 import { MedicationsScreen } from './screens/medications.js';
 import { PregnancyCalcScreen } from './screens/pregnancy-calc.js';
@@ -66,6 +67,8 @@ const routes = {
   assistant: { label: 'المساعد',   icon: '💬', view: AssistantScreen },
   firstaid:  { label: 'الإسعافات', icon: '🚨', view: FirstAidScreen },
   settings:  { label: 'الإعدادات', icon: '⚙️', view: SettingsScreen },
+  breastfeeding: { label: 'الرضاعة', icon: '🤱', view: BreastfeedingScreen },
+  mentalhealth: { label: 'صحتك النفسية', icon: '💗', view: MentalHealthScreen },
   memories:  { label: 'المذكرة', icon: '💝', view: MemoriesScreen },
   about:     { label: 'عن التطبيق', icon: 'ℹ️', view: AboutScreen },
   safety:    { label: 'السلامة', icon: '🛡️', view: SafetyScreen },
