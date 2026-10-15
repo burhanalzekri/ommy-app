@@ -3,6 +3,7 @@
    ============================================ */
 import { Storage } from '../lib/storage.js';
 import { Badges } from '../lib/badges.js';
+import { Fetal } from '../lib/fetal.js';
 import { Voice, SoundFX } from '../lib/audio.js';
 
 /* ============ نصائح حسب الأسبوع ============ */
@@ -200,6 +201,8 @@ export function PregnancyCalcScreen() {
       ` : ''}
 
       <!-- نصائح الأسبوع -->
+      ${renderFetalComparison(p.weeks)}
+
       ${sectionHeader(p.tips.icon, 'نصائح الأسبوع ' + p.weeks + ' · ' + p.tips.title, '#C65D7B')}
 
       <div style="background:var(--cream);border:1.5px solid #F5D9E2;border-radius:18px;padding:16px;margin-bottom:16px">
@@ -339,3 +342,28 @@ function schedulePregnancyNotification() {
 }
 
 setTimeout(schedulePregnancyNotification, 8000);
+
+/* ============ مقارنة حجم الجنين ============ */
+function renderFetalComparison(weeks) {
+  const f = Fetal.get(weeks);
+
+  return `
+    <div style="background:linear-gradient(135deg,var(--rose-soft),var(--lavender-soft));border:1.5px solid var(--rose);border-radius:24px;padding:20px;margin-bottom:20px;grid-column:1/-1;text-align:center">
+      <div style="font-size:0.72rem;font-weight:800;color:var(--clay-deep);margin-bottom:8px">🥰 حجم طفلك هذا الأسبوع</div>
+      <div style="font-size:4.5rem;line-height:1;margin-bottom:12px">${f.emoji}</div>
+      <div style="font-family:var(--font-heading);font-size:1.15rem;font-weight:900;color:var(--ink);margin-bottom:6px">بحجم ${f.size}</div>
+      <div style="font-size:0.82rem;color:var(--ink-2);margin-bottom:14px">الأسبوع ${weeks} من الحمل</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:rgba(255,255,255,.7);border-radius:14px;padding:12px">
+          <div style="font-size:0.68rem;color:var(--ink-3);font-weight:700">📏 الطول</div>
+          <div style="font-family:var(--font-heading);font-weight:900;font-size:1rem;color:var(--clay-deep);margin-top:4px">${f.length} سم</div>
+        </div>
+        <div style="background:rgba(255,255,255,.7);border-radius:14px;padding:12px">
+          <div style="font-size:0.68rem;color:var(--ink-3);font-weight:700">⚖️ الوزن</div>
+          <div style="font-family:var(--font-heading);font-weight:900;font-size:1rem;color:var(--clay-deep);margin-top:4px">${f.weight >= 1000 ? (f.weight / 1000).toFixed(2) + ' كجم' : f.weight + ' غ'}</div>
+        </div>
+      </div>
+    </div>
+  `;
+}

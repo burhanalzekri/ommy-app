@@ -33,6 +33,7 @@ import './lib/silent.js';
 import './lib/predictions.js';
 import './lib/summary.js';
 import './lib/report.js';
+import './lib/temperature.js';
 import './lib/tips.js';
 import './lib/multi-child.js';
 import './lib/notifications.js';

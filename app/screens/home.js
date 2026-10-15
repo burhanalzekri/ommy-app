@@ -7,6 +7,7 @@ import { Timer } from '../lib/timer.js';
 import { Predictions } from '../lib/predictions.js';
 import { Summary } from '../lib/summary.js';
 import { Tips } from '../lib/tips.js';
+import { Temperature } from '../lib/temperature.js';
 
 window.ommyQuick = function(action) {
   const labels = { feed: 'رضعة', sleep: 'نوم', diaper: 'حفاض', med: 'دواء' };
@@ -56,6 +57,8 @@ export function HomeScreen() {
       ${renderNextNap()}
 
       ${renderWeeklyChart()}
+
+      ${renderTemperatureCard()}
 
       ${renderTipsCarousel()}
 
@@ -251,6 +254,64 @@ function renderTipsCarousel() {
     </div>
     <div style="display:flex;gap:12px;overflow-x:auto;padding:4px 0 12px;grid-column:1/-1;scrollbar-width:none;-webkit-overflow-scrolling:touch">
       ${cards}
+    </div>
+  `;
+}
+
+/* ============ بطاقة الحرارة ============ */
+function renderTemperatureCard() {
+  const latest = Temperature.latest();
+  const all = Temperature.list().slice(0, 5);
+
+  if (!latest) {
+    return `
+      <div style="background:linear-gradient(135deg,var(--mint-soft),var(--sky-soft));border:1.5px solid var(--mint);border-radius:20px;padding:16px;margin-bottom:16px;grid-column:1/-1;display:flex;gap:12px;align-items:center;cursor:pointer" onclick="ommyAddTemp()">
+        <span style="width:52px;height:52px;border-radius:16px;background:#fff;display:grid;place-items:center;font-size:1.6rem;flex-shrink:0">🌡️</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-family:var(--font-heading);font-weight:900;font-size:0.9rem;color:var(--mint-deep);margin-bottom:3px">قياس الحرارة</div>
+          <div style="font-size:0.74rem;color:var(--ink-2)">لم تُسجَّل قياسات اليوم</div>
+        </div>
+        <span style="font-size:1.5rem;color:var(--mint-deep)">+</span>
+      </div>
+    `;
+  }
+
+  const info = Temperature.interpret(latest.temp);
+  const timeAgo = (() => {
+    const diff = Math.floor((Date.now() - new Date(latest.time).getTime()) / 60000);
+    if (diff < 1) return 'الآن';
+    if (diff < 60) return `منذ ${diff} د`;
+    return `منذ ${Math.floor(diff / 60)} س`;
+  })();
+
+  return `
+    <div style="background:linear-gradient(135deg,var(--mint-soft),var(--sky-soft));border:1.5px solid var(--mint);border-radius:20px;padding:16px;margin-bottom:16px;grid-column:1/-1">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div style="font-family:var(--font-heading);font-weight:900;font-size:0.9rem;color:var(--mint-deep)">🌡️ الحرارة</div>
+        <button onclick="ommyAddTemp()" type="button" style="background:var(--mint-deep);color:#fff;border:none;border-radius:100px;padding:6px 14px;font-family:var(--font-heading);font-weight:900;font-size:0.72rem;cursor:pointer">+ قياس جديد</button>
+      </div>
+
+      <div style="display:flex;gap:14px;align-items:center;padding:14px;background:#fff;border-radius:16px;margin-bottom:12px">
+        <span style="width:60px;height:60px;border-radius:18px;background:${info.color}20;display:grid;place-items:center;font-size:1.8rem;flex-shrink:0">${info.icon}</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-family:var(--font-heading);font-weight:900;font-size:1.5rem;color:${info.color};line-height:1">${latest.temp}°<span style="font-size:0.9rem">م</span></div>
+          <div style="font-size:0.72rem;color:var(--ink-2);margin-top:4px"><b style="color:${info.color}">${info.label}</b> · ${timeAgo}</div>
+          <div style="font-size:0.68rem;color:var(--ink-3);margin-top:2px">${info.advice}</div>
+        </div>
+      </div>
+
+      ${all.length > 1 ? `
+        <div style="display:flex;gap:6px;overflow-x:auto;padding:4px 0">
+          ${all.slice(1).map(t => {
+            const i = Temperature.interpret(t.temp);
+            const time = new Date(t.time).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+            return `<div style="flex:0 0 auto;padding:8px 12px;background:#fff;border-radius:12px;text-align:center;border:1px solid var(--line)">
+              <div style="font-family:var(--font-heading);font-weight:900;font-size:0.82rem;color:${i.color}">${t.temp}°</div>
+              <div style="font-size:0.6rem;color:var(--ink-3);margin-top:2px">${time}</div>
+            </div>`;
+          }).join('')}
+        </div>
+      ` : ''}
     </div>
   `;
 }
