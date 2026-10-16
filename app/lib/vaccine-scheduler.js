@@ -5,6 +5,47 @@ import { Storage } from './storage.js';
 import { BabyStore } from './storage.js';
 
 export const VaccineScheduler = {
+  /* === معرّف الطفل النشط === */
+  _activeChildId() {
+    try {
+      const kids = Storage.get('children', []);
+      if (!Array.isArray(kids) || kids.length === 0) return 'child_1';
+      const activeId = Storage.get('set_activeChild', 'child_1');
+      const found = kids.find(c => c.id === activeId);
+      return found ? found.id : kids[0].id;
+    } catch (e) {
+      return 'child_1';
+    }
+  },
+
+  /* === مفتاح التخزين للطفل النشط === */
+  _storageKey(base) {
+    return base + '_' + this._activeChildId();
+  },
+
+  /* === Migration: نقل بيانات 'vaccines_done' القديمة للطفل الأول === */
+  _migrate() {
+    try {
+      const legacy = Storage.get('vaccines_done', null);
+      if (!legacy || !Array.isArray(legacy) || legacy.length === 0) return;
+      
+      const kids = Storage.get('children', []);
+      if (!Array.isArray(kids) || kids.length === 0) return;
+      
+      const firstId = kids[0].id;
+      const newKey = 'vaccines_done_' + firstId;
+      const existing = Storage.get(newKey, null);
+      
+      // انقل فقط إن لم يكن للطفل الأول تطعيمات مسجلة
+      if (!existing || existing.length === 0) {
+        Storage.set(newKey, legacy);
+        console.log('✅ Migration: نقل ' + legacy.length + ' تطعيم للطفل', kids[0].name);
+      }
+    } catch (e) {
+      console.warn('Migration error:', e);
+    }
+  },
+
   /* جدول التطعيمات حسب العمر (بالشهور) */
   schedule: [
     { id: 'v0', ageMonths: 0, name: 'عند الولادة', vaccines: ['BCG (الدرن)', 'التهاب الكبد B'], desc: 'الجرعة الأولى', essential: true },
@@ -21,7 +62,9 @@ export const VaccineScheduler = {
 
   /* تطعيمات تمت */
   completed() {
-    return Storage.get('vaccines_done', []);
+    // Migration أول مرة
+    this._migrate();
+    return Storage.get('vaccines_done_' + this._activeChildId(), []);
   },
 
   /* تعليم تطعيم كـ "تم" */
@@ -29,7 +72,7 @@ export const VaccineScheduler = {
     const all = this.completed();
     if (!all.includes(vaccineId)) {
       all.push(vaccineId);
-      Storage.set('vaccines_done', all);
+      Storage.set('vaccines_done_' + this._activeChildId(), all);
     }
     return true;
   },
@@ -37,7 +80,7 @@ export const VaccineScheduler = {
   /* إلغاء */
   markUndone(vaccineId) {
     const all = this.completed().filter(id => id !== vaccineId);
-    Storage.set('vaccines_done', all);
+    Storage.set('vaccines_done_' + this._activeChildId(), all);
     return true;
   },
 
@@ -152,7 +195,8 @@ export const VaccineScheduler = {
 
   async sendNotification(title, body, tag) {
     /* منع التكرار */
-    const sent = Storage.get('vaccines_notified', []);
+    const sentKey = 'vaccines_notified_' + this._activeChildId();
+    const sent = Storage.get(sentKey, []);
     if (sent.includes(tag)) return false;
 
     if (window.ommyNotify) {

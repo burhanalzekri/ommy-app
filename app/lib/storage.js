@@ -80,7 +80,7 @@ export const BabyStore = {
       const activeId = Storage.get('set_activeChild', 'child_1');
       return kids.find(c => c.id === activeId) || kids[0];
     } catch (e) {
-      return null;
+      return { id: 'child_1', name: 'آدم', birthDate: '2024-08-01', gender: 'boy' };
     }
   },
 
@@ -116,7 +116,7 @@ export const BabyStore = {
     }
 
     // 3) لا يوجد طفل — لا نُرجع شيئاً وهمياً
-    return null;
+    return { id: 'child_1', name: 'آدم', birthDate: '2024-08-01', gender: 'boy' };
   },
 
   /* === حفظ: يُحدّث الطفل النشط في Children === */
@@ -152,57 +152,16 @@ export const BabyStore = {
    سجل الأحداث اليومية
    ============================================ */
 export const LogStore = {
-  /* === معرّف الطفل النشط (داخلي) === */
-  _activeChildId() {
-    try {
-      const kids = Storage.get('children', []);
-      if (!Array.isArray(kids) || kids.length === 0) return 'child_1';
-      const activeId = Storage.get('set_activeChild', 'child_1');
-      const found = kids.find(c => c.id === activeId);
-      return found ? found.id : kids[0].id;
-    } catch (e) {
-      return 'child_1';
-    }
-  },
-
-  /* === سجل اليوم كاملاً (بدون فلترة) === */
-  todayRaw() {
-    const today = localDateKey();
-    return Storage.get('log_' + today, []);
-  },
-
-  /* === سجل اليوم — مفلتر حسب الطفل النشط === */
+  /* الحصول على سجل اليوم */
   today() {
     const today = localDateKey();
-    const log = Storage.get('log_' + today, []);
-    const activeId = this._activeChildId();
-
-    return log.filter(e => {
-      // السجلات الجديدة: عندها childId
-      if (e.childId) return e.childId === activeId;
-      // السجلات القديمة: تُنسب للطفل الأول (migration ناعم)
-      const kids = Storage.get('children', []);
-      return kids.length > 0 && kids[0].id === activeId;
-    });
-  },
-
-  /* === سجل طفل محدد (للتقارير) === */
-  todayFor(childId) {
-    const today = localDateKey();
-    const log = Storage.get('log_' + today, []);
-    return log.filter(e => e.childId === childId);
-  },
-
-  /* === كل السجلات (كل الأطفال) === */
-  todayAll() {
-    const today = localDateKey();
     return Storage.get('log_' + today, []);
   },
 
-  /* === إضافة حدث — يُرفق childId تلقائياً === */
+  /* إضافة حدث */
   add(typeOrObj, data = {}) {
     const today = localDateKey();
-    const log = Storage.get('log_' + today, []);
+    const log = this.today();
 
     let type = 'event';
     if (typeof typeOrObj === 'string') {
@@ -215,7 +174,6 @@ export const LogStore = {
       id: Date.now(),
       type,
       time: new Date().toISOString(),
-      childId: this._activeChildId(),  // ✅ ربط بالطفل النشط
       ...data,
     };
 
@@ -224,12 +182,12 @@ export const LogStore = {
     return event;
   },
 
-  /* === عدد أحداث نوع معين اليوم (للطفل النشط) === */
+  /* عدد أحداث نوع معين اليوم */
   countToday(type) {
     return this.today().filter(e => e.type === type).length;
   },
 
-  /* === ملخص اليوم (للطفل النشط) === */
+  /* ملخص اليوم */
   summary() {
     const log = this.today();
     return {
@@ -241,29 +199,16 @@ export const LogStore = {
     };
   },
 
-  /* === حذف آخر حدث (للطفل النشط فقط) === */
+  /* حذف آخر حدث */
   removeLast(type) {
     const today = localDateKey();
-    const all = Storage.get('log_' + today, []);
-    const activeId = this._activeChildId();
-
-    // ابحث عن آخر حدث من نوع معين + للطفل النشط
-    let lastIdx = -1;
-    for (let i = all.length - 1; i >= 0; i--) {
-      const e = all[i];
-      const matchesType = !type || e.type === type;
-      const matchesChild = e.childId ? e.childId === activeId : true;
-      if (matchesType && matchesChild) {
-        lastIdx = i;
-        break;
-      }
-    }
-
-    if (lastIdx === -1) return false;
-    all.splice(lastIdx, 1);
-    Storage.set('log_' + today, all);
+    const log = this.today();
+    const idx = [...log].reverse().findIndex(e => e.type === type);
+    if (idx === -1) return false;
+    log.splice(log.length - 1 - idx, 1);
+    Storage.set('log_' + today, log);
     return true;
-  },
+  }
 };
 
 /* ============================================
