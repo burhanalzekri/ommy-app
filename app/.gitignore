@@ -1,0 +1,8 @@
+# Ommi gitignore
+
+# Backup files
+*.bak
+*.bak_*
+*.backup
+*.broken
+_archive/
