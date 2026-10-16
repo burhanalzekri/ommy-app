@@ -72,47 +72,137 @@ export const Storage = {
    بيانات الطفل
    ============================================ */
 export const BabyStore = {
-  get() {
-    return Storage.get('baby', {
-      name: 'آدم',
-      birthDate: '2024-08-01',
-      weight: 10.2,
-      height: 78,
-      headCirc: 46,
-      allergies: ['peanut'],
-    });
+  /* === جسر توافق: يقرأ من Children أولاً === */
+  _activeChild() {
+    try {
+      const kids = Storage.get('children', []);
+      if (!Array.isArray(kids) || kids.length === 0) return null;
+      const activeId = Storage.get('set_activeChild', 'child_1');
+      return kids.find(c => c.id === activeId) || kids[0];
+    } catch (e) {
+      return null;
+    }
   },
 
+  /* === حساب العمر بالأشهر === */
+  _ageMonths(birthDate) {
+    if (!birthDate) return 0;
+    const birth = new Date(birthDate);
+    const now = new Date();
+    return Math.max(0,
+      (now.getFullYear() - birth.getFullYear()) * 12 +
+      (now.getMonth() - birth.getMonth())
+    );
+  },
+
+  /* === قراءة الطفل النشط === */
+  get() {
+    // 1) حاول من Children (المصدر الحديث)
+    const active = this._activeChild();
+    if (active) {
+      return {
+        ...active,
+        ageMonths: this._ageMonths(active.birthDate),
+      };
+    }
+
+    // 2) Fallback للبيانات القديمة (migration ناعم)
+    const legacy = Storage.get('baby', null);
+    if (legacy && legacy.name) {
+      return {
+        ...legacy,
+        ageMonths: this._ageMonths(legacy.birthDate),
+      };
+    }
+
+    // 3) لا يوجد طفل — لا نُرجع شيئاً وهمياً
+    return null;
+  },
+
+  /* === حفظ: يُحدّث الطفل النشط في Children === */
   save(baby) {
+    if (!baby) return false;
+
+    const kids = Storage.get('children', []);
+    const activeId = Storage.get('set_activeChild', 'child_1');
+
+    if (Array.isArray(kids) && kids.length > 0) {
+      const idx = kids.findIndex(c => c.id === activeId);
+      if (idx >= 0) {
+        kids[idx] = { ...kids[idx], ...baby };
+        Storage.set('children', kids);
+        return true;
+      }
+    }
+
+    // Fallback: احفظ في 'baby' القديم
     return Storage.set('baby', baby);
   },
 
+  /* === تحديث العمر (توافق مع الكود القديم) === */
   updateAge() {
     const baby = this.get();
-    const birth = new Date(baby.birthDate);
-    const now = new Date();
-    const months = (now.getFullYear() - birth.getFullYear()) * 12
-                 + (now.getMonth() - birth.getMonth());
-    baby.ageMonths = Math.max(0, months);
-    this.save(baby);
+    if (!baby) return { ageMonths: 0 };
+    baby.ageMonths = this._ageMonths(baby.birthDate);
     return baby;
-  }
+  },
 };
 
 /* ============================================
    سجل الأحداث اليومية
    ============================================ */
 export const LogStore = {
-  /* الحصول على سجل اليوم */
-  today() {
+  /* === معرّف الطفل النشط (داخلي) === */
+  _activeChildId() {
+    try {
+      const kids = Storage.get('children', []);
+      if (!Array.isArray(kids) || kids.length === 0) return 'child_1';
+      const activeId = Storage.get('set_activeChild', 'child_1');
+      const found = kids.find(c => c.id === activeId);
+      return found ? found.id : kids[0].id;
+    } catch (e) {
+      return 'child_1';
+    }
+  },
+
+  /* === سجل اليوم كاملاً (بدون فلترة) === */
+  todayRaw() {
     const today = localDateKey();
     return Storage.get('log_' + today, []);
   },
 
-  /* إضافة حدث */
+  /* === سجل اليوم — مفلتر حسب الطفل النشط === */
+  today() {
+    const today = localDateKey();
+    const log = Storage.get('log_' + today, []);
+    const activeId = this._activeChildId();
+
+    return log.filter(e => {
+      // السجلات الجديدة: عندها childId
+      if (e.childId) return e.childId === activeId;
+      // السجلات القديمة: تُنسب للطفل الأول (migration ناعم)
+      const kids = Storage.get('children', []);
+      return kids.length > 0 && kids[0].id === activeId;
+    });
+  },
+
+  /* === سجل طفل محدد (للتقارير) === */
+  todayFor(childId) {
+    const today = localDateKey();
+    const log = Storage.get('log_' + today, []);
+    return log.filter(e => e.childId === childId);
+  },
+
+  /* === كل السجلات (كل الأطفال) === */
+  todayAll() {
+    const today = localDateKey();
+    return Storage.get('log_' + today, []);
+  },
+
+  /* === إضافة حدث — يُرفق childId تلقائياً === */
   add(typeOrObj, data = {}) {
     const today = localDateKey();
-    const log = this.today();
+    const log = Storage.get('log_' + today, []);
 
     let type = 'event';
     if (typeof typeOrObj === 'string') {
@@ -125,6 +215,7 @@ export const LogStore = {
       id: Date.now(),
       type,
       time: new Date().toISOString(),
+      childId: this._activeChildId(),  // ✅ ربط بالطفل النشط
       ...data,
     };
 
@@ -133,12 +224,12 @@ export const LogStore = {
     return event;
   },
 
-  /* عدد أحداث نوع معين اليوم */
+  /* === عدد أحداث نوع معين اليوم (للطفل النشط) === */
   countToday(type) {
     return this.today().filter(e => e.type === type).length;
   },
 
-  /* ملخص اليوم */
+  /* === ملخص اليوم (للطفل النشط) === */
   summary() {
     const log = this.today();
     return {
@@ -150,16 +241,29 @@ export const LogStore = {
     };
   },
 
-  /* حذف آخر حدث */
+  /* === حذف آخر حدث (للطفل النشط فقط) === */
   removeLast(type) {
     const today = localDateKey();
-    const log = this.today();
-    const idx = [...log].reverse().findIndex(e => e.type === type);
-    if (idx === -1) return false;
-    log.splice(log.length - 1 - idx, 1);
-    Storage.set('log_' + today, log);
+    const all = Storage.get('log_' + today, []);
+    const activeId = this._activeChildId();
+
+    // ابحث عن آخر حدث من نوع معين + للطفل النشط
+    let lastIdx = -1;
+    for (let i = all.length - 1; i >= 0; i--) {
+      const e = all[i];
+      const matchesType = !type || e.type === type;
+      const matchesChild = e.childId ? e.childId === activeId : true;
+      if (matchesType && matchesChild) {
+        lastIdx = i;
+        break;
+      }
+    }
+
+    if (lastIdx === -1) return false;
+    all.splice(lastIdx, 1);
+    Storage.set('log_' + today, all);
     return true;
-  }
+  },
 };
 
 /* ============================================
@@ -173,3 +277,44 @@ export const Settings = {
     return Storage.set('setting_' + key, value);
   }
 };
+
+/* ============================================
+   Migration: نقل بيانات 'baby' القديمة إلى 'children'
+   يُشغّل مرة واحدة عند أول تحميل
+   ============================================ */
+export function migrateBabyToChildren() {
+  try {
+    // هل يوجد بيانات قديمة؟
+    const legacy = Storage.get('baby', null);
+    if (!legacy || !legacy.name) return { migrated: false, reason: 'لا توجد بيانات قديمة' };
+
+    // هل يوجد أطفال بالفعل؟
+    const kids = Storage.get('children', []);
+    if (Array.isArray(kids) && kids.length > 0) {
+      // فيه أطفال → تجاهل البيانات القديمة
+      return { migrated: false, reason: 'يوجد أطفال بالفعل' };
+    }
+
+    // انقل البيانات القديمة
+    const newChild = {
+      id: 'child_' + Date.now(),
+      name: legacy.name || 'طفل',
+      birthDate: legacy.birthDate || localDateKey(),
+      gender: legacy.gender || 'boy',
+      weight: legacy.weight || null,
+      height: legacy.height || null,
+      headCirc: legacy.headCirc || null,
+      allergies: legacy.allergies || [],
+      createdAt: new Date().toISOString(),
+    };
+
+    Storage.set('children', [newChild]);
+    Storage.set('set_activeChild', newChild.id);
+
+    console.log('✅ تم نقل الطفل القديم:', newChild.name);
+    return { migrated: true, child: newChild };
+  } catch (e) {
+    console.error('Migration error:', e);
+    return { migrated: false, reason: 'خطأ: ' + e.message };
+  }
+}

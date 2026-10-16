@@ -2,6 +2,7 @@
    Timer Mode — مؤقت بدء/إيقاف للرضعة والنوم
    ============================================ */
 import { Storage } from './storage.js';
+import { LogStore } from './storage.js';
 
 export const Timer = {
   /* الحالة الحالية للمؤقت */
@@ -34,17 +35,12 @@ export const Timer = {
     );
 
     /* احفظ الحدث */
-    const today = this._todayKey();
-    const log = Storage.get('log_' + today, []);
-    log.push({
-      id: Date.now(),
-      type: timer.type,
+    LogStore.add(timer.type, {
       time: endTime,
       startTime: timer.startTime,
       duration,
       label: timer.label,
     });
-    Storage.set('log_' + today, log);
     Storage.remove('active_timer');
 
     return { success: true, event: { type: timer.type, duration } };

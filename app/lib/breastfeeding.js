@@ -1,7 +1,7 @@
 /* ============================================
    تتبع الرضاعة الطبيعية — يمين/يسار
    ============================================ */
-import { Storage } from './storage.js';
+import { Storage, LogStore } from './storage.js';
 
 export const Breastfeeding = {
   /* الجلسة النشطة */
@@ -96,11 +96,7 @@ export const Breastfeeding = {
       .reduce((sum, s) => sum + s.duration, 0);
 
     /* احفظ في السجل */
-    const today = this._todayKey();
-    const log = Storage.get('log_' + today, []);
-    log.push({
-      id: Date.now(),
-      type: 'feed',
+    LogStore.add('feed', {
       subtype: 'breastfeeding',
       time: new Date().toISOString(),
       startTime: session.startTime,
@@ -109,7 +105,6 @@ export const Breastfeeding = {
       rightDuration,
       segments: session.segments,
     });
-    Storage.set('log_' + today, log);
 
     /* امسح الجلسة النشطة */
     Storage.remove('bf_session');
@@ -164,8 +159,7 @@ export const Breastfeeding = {
 
   /* آخر رضعة (للتوصية بالجهة) */
   lastSession() {
-    const today = this._todayKey();
-    const log = Storage.get('log_' + today, []);
+    const log = LogStore.today();
     const bfs = log.filter(e => e.type === 'feed' && e.subtype === 'breastfeeding');
     return bfs.length > 0 ? bfs[bfs.length - 1] : null;
   },
