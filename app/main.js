@@ -1065,10 +1065,8 @@ function renderChildSwitcher() {
 
 /* ============ تشغيل/إيقاف مؤقّت العمر ============ */
 function manageAgeTimer() {
-  const route = state.route;
-  if (!route) return;
-
-  const isHome = route.id === 'home' || route.path === '/' || route.label === 'اليوم';
+  const currentKey = state.currentRoute;
+  const isHome = currentKey === 'home';
 
   if (isHome && window.ommyAgeHero?.start) {
     setTimeout(() => {
