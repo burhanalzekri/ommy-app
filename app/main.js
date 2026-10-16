@@ -1,28 +1,5 @@
-import { HomeScreen } from './screens/home.js';
-import { NutritionScreen } from './screens/nutrition.js';
-import { SleepScreen } from './screens/sleep.js';
-import { PregnancyScreen } from './screens/pregnancy.js';
-import { GrowthScreen } from './screens/growth.js';
-import { VaccinesScreen } from './screens/vaccines.js';
-import { AssistantScreen } from './screens/assistant.js';
-import { FirstAidScreen } from './screens/firstaid.js';
-import { SettingsScreen } from './screens/settings.js';
-import { BreastfeedingScreen } from './screens/breastfeeding.js';
-import { MentalHealthScreen } from './screens/mental-health.js';
 import './lib/mental-health.js';
-import { AboutScreen } from './screens/about.js';
-import { MemoriesScreen } from './screens/memories.js';
-import { SafetyScreen } from './screens/safety.js';
-import { MilestonesScreen } from './screens/milestones.js';
-import { ActivitiesScreen } from './screens/activities.js';
-import { DuasScreen } from './screens/duas.js';
-import { SelfCareScreen } from './screens/selfcare.js';
 import './lib/selfcare.js';
-import { StoriesScreen } from './screens/stories.js';
-import { MedicationsScreen } from './screens/medications.js';
-import { PregnancyCalcScreen } from './screens/pregnancy-calc.js';
-import { HospitalBagScreen } from './screens/hospital-bag.js';
-import { ChildrenScreen } from './screens/children.js';
 import './lib/badges.js';
 import './lib/medications.js';
 import './lib/cloud.js';
@@ -65,29 +42,29 @@ window.ommyToast = function(msg, icon) { toast(msg, { type: 'info', icon: icon, 
 window.haptic = haptic;
 
 const routes = {
-  home:      { label: 'اليوم',     icon: '🏠', view: HomeScreen },
-  children:  { label: 'الأطفال',   icon: '👶', view: ChildrenScreen },
-  nutrition: { label: 'التغذية',   icon: '🍲', view: NutritionScreen },
-  sleep:     { label: 'النوم',     icon: '🌙', view: SleepScreen },
-  pregnancy: { label: 'الحمل',     icon: '🤰', view: PregnancyScreen },
-  growth:    { label: 'النمو',     icon: '📈', view: GrowthScreen },
-  vaccines:  { label: 'التطعيمات', icon: '💉', view: VaccinesScreen },
-  assistant: { label: 'المساعد',   icon: '💬', view: AssistantScreen },
-  firstaid:  { label: 'الإسعافات', icon: '🚨', view: FirstAidScreen },
-  settings:  { label: 'الإعدادات', icon: '⚙️', view: SettingsScreen },
-  breastfeeding: { label: 'الرضاعة', icon: '🤱', view: BreastfeedingScreen },
-  mentalhealth: { label: 'صحتك النفسية', icon: '💗', view: MentalHealthScreen },
-  memories:  { label: 'المذكرة', icon: '💝', view: MemoriesScreen },
-  about:     { label: 'عن التطبيق', icon: 'ℹ️', view: AboutScreen },
-  safety:    { label: 'السلامة', icon: '🛡️', view: SafetyScreen },
-  milestones: { label: 'معالم التطور', icon: '🌱', view: MilestonesScreen },
-  activities: { label: 'أنشطة', icon: '🎨', view: ActivitiesScreen },
-  duas:      { label: 'أدعية', icon: '🤲', view: DuasScreen },
-  selfcare:  { label: 'العناية بالأم', icon: '🌸', view: SelfCareScreen },
-  stories:   { label: 'قصص', icon: '📚', view: StoriesScreen },
-  medications: { label: 'الأدوية', icon: '💊', view: MedicationsScreen },
-  pregcalc:  { label: 'حاسبة الحمل', icon: '🤰', view: PregnancyCalcScreen },
-  bag:       { label: 'حقيبة الولادة', icon: '🧳', view: HospitalBagScreen },
+  home:      { label: 'اليوم',     icon: '🏠', load: () => import('./screens/home.js').then(m => m.HomeScreen) },
+  children:  { label: 'الأطفال',   icon: '👶', load: () => import('./screens/children.js').then(m => m.ChildrenScreen) },
+  nutrition: { label: 'التغذية',   icon: '🍲', load: () => import('./screens/nutrition.js').then(m => m.NutritionScreen) },
+  sleep:     { label: 'النوم',     icon: '🌙', load: () => import('./screens/sleep.js').then(m => m.SleepScreen) },
+  pregnancy: { label: 'الحمل',     icon: '🤰', load: () => import('./screens/pregnancy.js').then(m => m.PregnancyScreen) },
+  growth:    { label: 'النمو',     icon: '📈', load: () => import('./screens/growth.js').then(m => m.GrowthScreen) },
+  vaccines:  { label: 'التطعيمات', icon: '💉', load: () => import('./screens/vaccines.js').then(m => m.VaccinesScreen) },
+  assistant: { label: 'المساعد',   icon: '💬', load: () => import('./screens/assistant.js').then(m => m.AssistantScreen) },
+  firstaid:  { label: 'الإسعافات', icon: '🚨', load: () => import('./screens/firstaid.js').then(m => m.FirstAidScreen) },
+  settings:  { label: 'الإعدادات', icon: '⚙️', load: () => import('./screens/settings.js').then(m => m.SettingsScreen) },
+  breastfeeding: { label: 'الرضاعة', icon: '🤱', load: () => import('./screens/breastfeeding.js').then(m => m.BreastfeedingScreen) },
+  mentalhealth: { label: 'صحتك النفسية', icon: '💗', load: () => import('./screens/mental-health.js').then(m => m.MentalHealthScreen) },
+  memories:  { label: 'المذكرة', icon: '💝', load: () => import('./screens/memories.js').then(m => m.MemoriesScreen) },
+  about:     { label: 'عن التطبيق', icon: 'ℹ️', load: () => import('./screens/about.js').then(m => m.AboutScreen) },
+  safety:    { label: 'السلامة', icon: '🛡️', load: () => import('./screens/safety.js').then(m => m.SafetyScreen) },
+  milestones: { label: 'معالم التطور', icon: '🌱', load: () => import('./screens/milestones.js').then(m => m.MilestonesScreen) },
+  activities: { label: 'أنشطة', icon: '🎨', load: () => import('./screens/activities.js').then(m => m.ActivitiesScreen) },
+  duas:      { label: 'أدعية', icon: '🤲', load: () => import('./screens/duas.js').then(m => m.DuasScreen) },
+  selfcare:  { label: 'العناية بالأم', icon: '🌸', load: () => import('./screens/selfcare.js').then(m => m.SelfCareScreen) },
+  stories:   { label: 'قصص', icon: '📚', load: () => import('./screens/stories.js').then(m => m.StoriesScreen) },
+  medications: { label: 'الأدوية', icon: '💊', load: () => import('./screens/medications.js').then(m => m.MedicationsScreen) },
+  pregcalc:  { label: 'حاسبة الحمل', icon: '🤰', load: () => import('./screens/pregnancy-calc.js').then(m => m.PregnancyCalcScreen) },
+  bag:       { label: 'حقيبة الولادة', icon: '🧳', load: () => import('./screens/hospital-bag.js').then(m => m.HospitalBagScreen) },
 };
 
 export const state = {
@@ -289,10 +266,10 @@ document.documentElement.setAttribute('data-theme', state.theme);
   render();
 }
 
-export function navigate(route) {
+export async function navigate(route) {
   if (!routes[route]) return;
   state.currentRoute = route;
-  render();
+  await render();
   requestAnimationFrame(() => {
     document.querySelector('.content')?.scrollTo({ top: 0, behavior: 'smooth' });
   });
@@ -368,15 +345,34 @@ function renderTabBar() {
   `;
 }
 
-function render() {
+/* 🚀 Lazy Loading — cache للشاشات المحمّلة */
+const loadedViews = {};
+
+async function render() {
   const app = document.getElementById('app');
   const route = routes[state.currentRoute];
+  
+  // إذا لم تُحمّل الشاشة بعد — حمّلها
+  if (!loadedViews[state.currentRoute]) {
+    try {
+      app.innerHTML = '<div style="padding:40px;text-align:center;font-family:var(--font-heading);color:var(--ink-3)">⏳ جاري التحميل...</div>';
+      const view = await route.load();
+      loadedViews[state.currentRoute] = view;
+    } catch (err) {
+      console.error('❌ فشل تحميل الشاشة:', state.currentRoute, err);
+      app.innerHTML = '<div style="padding:40px;text-align:center;color:red">⚠️ فشل تحميل الصفحة<br><small>' + err.message + '</small></div>';
+      return;
+    }
+  }
+  
+  const viewFn = loadedViews[state.currentRoute];
+  
   app.innerHTML = `
     <div class="app-shell">
       ${renderSidebar()}
       <div class="app-main">
         ${renderMobileBar(route)}
-        <main class="content">${route.view(state)}</main>
+        <main class="content">${viewFn(state)}</main>
         ${renderTabBar()}
       </div>
     </div>
