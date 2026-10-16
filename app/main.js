@@ -935,7 +935,8 @@ setInterval(window.ommyUpdateDataSize, 1000);
 })();
 
 /* ============ تسجيل Service Worker وتحديثه بأمان ============ */
-if ('serviceWorker' in navigator) {
+/* 🚫 Service Worker معطّل مؤقتاً — لحل مشكلة الـ Cache القديم */
+if (false && 'serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     try {
       const reg = await navigator.serviceWorker.register('./sw.js', {
