@@ -52,3 +52,7 @@ export function haptic(type = 'light') {
     navigator.vibrate(patterns[type] || patterns.light);
   } catch (e) {}
 }
+
+/* === تسجيل عالمي للأزرار inline === */
+window.toast = toast;
+window.haptic = haptic;
