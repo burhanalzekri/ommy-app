@@ -1,0 +1,395 @@
+/* ============================================
+   شاشة التغذية — تصميم نظيف
+   ============================================ */
+
+/* الحاوية الرئيسية — block دائماً */
+.nut-wrap {
+  display: block !important;
+  width: 100%;
+  grid-column: 1 / -1;
+}
+
+/* === التبويبات === */
+.nut-tabs {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap;
+  gap: 4px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 4px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.nut-tabs::-webkit-scrollbar { display: none; }
+
+.nut-tab {
+  flex: 1 0 auto;
+  min-width: 90px;
+  border: none;
+  background: transparent;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.nut-tab:hover { color: var(--clay-deep); }
+.nut-tab.on {
+  background: linear-gradient(145deg, var(--clay), var(--clay-deep));
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(16,185,129,.3);
+}
+
+/* === البانل — واحد فقط يظهر === */
+.nut-panel {
+  display: none !important;
+}
+.nut-panel.on {
+  display: block !important;
+  animation: nutFade .3s ease;
+}
+@keyframes nutFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* === البطاقة الرئيسية === */
+.nut-hero {
+  background: linear-gradient(135deg, var(--clay) 0%, var(--clay-deep) 100%);
+  border-radius: 20px;
+  padding: 18px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.nut-hero::before {
+  content: "";
+  position: absolute;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.14);
+  top: -80px;
+  inset-inline-end: -50px;
+  pointer-events: none;
+}
+.nut-hero__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+.nut-hero__icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.22);
+  display: grid; place-items: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.nut-hero b {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1.3;
+}
+.nut-hero span {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  display: block;
+  margin-top: 2px;
+}
+.nut-hero__chips {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+.nut-hero__chips span {
+  font-size: 0.68rem;
+  background: rgba(255,255,255,.22);
+  border: 1px solid rgba(255,255,255,.35);
+  padding: 4px 11px;
+  border-radius: 100px;
+  margin: 0;
+  opacity: 1;
+}
+
+/* === شريط الأعمار === */
+.age-track {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.age-track::-webkit-scrollbar { display: none; }
+.age-btn {
+  flex: 1 0 auto;
+  min-width: 68px;
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--ink-3);
+  line-height: 1.3;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+  white-space: nowrap;
+}
+.age-btn em {
+  font-style: normal;
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.9rem;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.age-btn.on {
+  background: linear-gradient(145deg, var(--clay), var(--clay-deep));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 6px 14px rgba(16,185,129,.3);
+}
+.age-btn.on em { color: #fff; }
+
+/* === عنوان قسم === */
+.nut-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--ink-3);
+  margin: 18px 0 10px;
+}
+.nut-section::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--clay), transparent);
+  border-radius: 2px;
+}
+
+/* === بطاقة طعام === */
+.food-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 8px;
+  transition: all 0.2s;
+}
+.food-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(16,185,129,.1);
+}
+.food-item__icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  font-size: 1.3rem;
+  background: var(--olive-soft);
+  flex-shrink: 0;
+}
+.food-item__body { flex: 1; min-width: 0; }
+.food-item__body b {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 800;
+  line-height: 1.35;
+  margin-bottom: 3px;
+}
+.food-item__body span {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+.food-item__tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 5px 11px;
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.food-item__tag.ok { background: var(--olive-soft); color: var(--olive-deep); }
+.food-item__tag.caution { background: var(--clay-soft); color: var(--clay-deep); }
+.food-item__tag.forbidden { background: var(--red-soft); color: var(--red); }
+
+/* === تحذير === */
+.nut-warn {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--red-soft);
+  border: 1.5px solid rgba(220,38,38,.25);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+.nut-warn__icon { font-size: 1.2rem; flex-shrink: 0; }
+.nut-warn b {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--red);
+  margin-bottom: 3px;
+}
+.nut-warn p {
+  font-size: 0.74rem;
+  color: var(--ink-2);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* === حاسبة === */
+.nut-calc {
+  background: linear-gradient(135deg, var(--cream), var(--olive-soft));
+  border: 1.5px solid rgba(16,185,129,.2);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.nut-calc h5 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--olive-deep);
+  margin-bottom: 10px;
+}
+.nut-calc__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 0.78rem;
+  color: var(--ink-2);
+  border-bottom: 1px dashed rgba(16,185,129,.2);
+}
+.nut-calc__row:last-child { border-bottom: none; padding-bottom: 0; }
+.nut-calc__row b {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: var(--olive-deep);
+  font-size: 0.88rem;
+}
+
+/* === الوصفات === */
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.recipe-card {
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.recipe-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--clay);
+  box-shadow: 0 10px 24px rgba(16,185,129,.15);
+}
+.recipe-card__icon { font-size: 1.8rem; display: block; }
+.recipe-card__name {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--ink-2);
+  margin-top: 6px;
+}
+
+/* === أيام الأسبوع === */
+.week-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-bottom: 14px;
+}
+.week-day {
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  padding: 9px 3px;
+  text-align: center;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+}
+.week-day b {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.week-day.on {
+  background: linear-gradient(145deg, var(--clay), var(--clay-deep));
+  color: #fff;
+  border-color: transparent;
+}
+.week-day.on b { color: #fff; }
+
+/* === صف وجبة === */
+.meal-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+.meal-item__time {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.78rem;
+  color: var(--clay-deep);
+  width: 52px;
+  flex-shrink: 0;
+}
+.meal-item__body { flex: 1; min-width: 0; }
+.meal-item__body b {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+.meal-item__body span {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  margin-top: 2px;
+}

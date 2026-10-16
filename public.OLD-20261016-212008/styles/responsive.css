@@ -1,0 +1,349 @@
+/* ============================================
+   Layout — 4 أوضاع تلقائية:
+   📱 جوال صغير   (< 640)  : 70px
+   📱 جوال كبير   (640-899): 80px
+   💻 تابلت       (900-1199): 220px بنصوص
+   🖥️ لابتوب+     (1200+) : 260px بنصوص
+   ============================================ */
+
+/* === الوضع الافتراضي: جوال صغير (70px) === */
+.app-shell {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  height: 100dvh;
+  overflow: hidden;
+  transition: grid-template-columns 0.35s cubic-bezier(.4,0,.2,1);
+}
+
+body.sidebar-collapsed .app-shell {
+  grid-template-columns: 0 1fr;
+}
+
+body.sidebar-collapsed .sidebar {
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* === الشريط الجانبي — أيقونات فقط === */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  padding: 8px 4px;
+  background: linear-gradient(180deg, #0A1F1C 0%, #0F3D3E 100%);
+  color: #ECFDF5;
+  overflow-y: auto;
+  box-sizing: border-box;
+  width: 70px;
+  align-items: center;
+}
+
+.sidebar__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0 0 8px;
+  border-bottom: 1px solid rgba(52,211,153,.2);
+  margin-bottom: 8px;
+  width: 100%;
+}
+.sidebar__logo {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(145deg, #34D399, #10B981);
+  display: grid; place-items: center;
+  color: #fff; font-weight: 900; font-size: 1rem;
+  flex-shrink: 0;
+}
+.sidebar__title, .sidebar__subtitle { display: none; }
+
+.sidebar__nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+  align-items: center;
+}
+
+.sidebar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 2px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: #A7F3D0;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  min-height: 44px;
+  transition: all .2s;
+  box-sizing: border-box;
+  line-height: 1;
+  font-size: 0;
+}
+.sidebar__item > span:not(.sidebar__item-icon) {
+  display: none;
+}
+.sidebar__item:hover {
+  background: rgba(52,211,153,.15);
+  color: #ECFDF5;
+}
+.sidebar__item[aria-selected="true"] {
+  background: linear-gradient(145deg, #34D399, #10B981);
+  color: #052E16;
+}
+.sidebar__item-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.sidebar__footer {
+  padding-top: 6px;
+  border-top: 1px solid rgba(52,211,153,.15);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  width: 100%;
+}
+.sidebar__baby {
+  display: flex;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 8px;
+  background: rgba(255,255,255,.05);
+  width: 100%;
+}
+.sidebar__baby-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(145deg, #34D399, #10B981);
+  display: grid; place-items: center;
+  font-size: 1rem;
+}
+.sidebar__baby-info { display: none; }
+
+.sidebar__theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(52,211,153,.2);
+  color: #A7F3D0;
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 100%;
+}
+.sidebar__theme-btn > span:not(:first-child) {
+  display: none;
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+  min-width: 0;
+}
+
+html { overflow: hidden; height: 100%; }
+body {
+  overflow: hidden;
+  height: 100dvh;
+  margin: 0;
+}
+#app { height: 100dvh; overflow: hidden; }
+
+.app-bar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  background: var(--sand);
+  border-bottom: 1px solid var(--line);
+  z-index: 50;
+}
+.app-bar__menu-btn {
+  background: linear-gradient(145deg, #10B981, #047857) !important;
+  color: #fff !important;
+  border: none !important;
+  font-size: 1rem !important;
+  font-weight: 900;
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  display: grid; place-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.app-bar__title {
+  flex: 1;
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  padding: 10px;
+  width: 100%;
+}
+.content > * { margin-bottom: 10px; }
+
+.tab-bar { display: none; }
+
+/* ============================================
+   📱 جوال كبير (640px+) — 80px
+   ============================================ */
+@media (min-width: 640px) {
+  .app-shell { grid-template-columns: 80px 1fr; }
+  .sidebar { width: 80px; }
+}
+
+/* ============================================
+   💻 تابلت (900px+) — شريط كامل بالنصوص
+   ============================================ */
+@media (min-width: 900px) {
+  .app-shell { grid-template-columns: 220px 1fr; }
+
+  .sidebar {
+    width: 220px;
+    padding: 16px 10px;
+    align-items: stretch;
+  }
+
+  /* الرأس أفقي */
+  .sidebar__brand {
+    flex-direction: row;
+    gap: 8px;
+    padding: 0 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sidebar__logo { width: 38px; height: 38px; font-size: 1rem; }
+  .sidebar__title {
+    display: block;
+    font-size: 0.95rem;
+    text-align: start;
+    font-weight: 900;
+  }
+  .sidebar__subtitle {
+    display: block;
+    font-size: 0.58rem;
+    color: #6EE7B7;
+  }
+
+  /* القائمة أفقية بالنص */
+  .sidebar__item {
+    flex-direction: row;
+    gap: 10px;
+    padding: 9px 12px;
+    font-size: 0.82rem;
+    text-align: start;
+    min-height: 42px;
+    justify-content: flex-start;
+  }
+  .sidebar__item > span:not(.sidebar__item-icon) {
+    display: inline;
+  }
+  .sidebar__item-icon {
+    width: 22px;
+    text-align: center;
+    font-size: 1.05rem;
+  }
+
+  /* Footer كامل */
+  .sidebar__footer { align-items: stretch; }
+  .sidebar__baby {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 8px;
+  }
+  .sidebar__baby-avatar { width: 34px; height: 34px; font-size: 1rem; }
+  .sidebar__baby-info { display: block; text-align: start; }
+  .sidebar__baby-info b {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #ECFDF5;
+  }
+  .sidebar__baby-info span {
+    display: block;
+    font-size: 0.58rem;
+    color: #6EE7B7;
+  }
+  .sidebar__theme-btn {
+    flex-direction: row;
+    gap: 8px;
+    padding: 9px 12px;
+    font-size: 0.72rem;
+    text-align: start;
+  }
+  .sidebar__theme-btn > span:not(:first-child) {
+    display: inline;
+  }
+
+  /* المحتوى شبكة */
+  .content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    padding: 20px;
+    align-content: start;
+  }
+  .content > * { margin-bottom: 0; }
+  .content > .card--hero,
+  .content > .section-title,
+  .content > .span-full { grid-column: 1 / -1; }
+}
+
+/* ============================================
+   🖥️ لابتوب/كمبيوتر (1200px+) — 260px + 3 أعمدة
+   ============================================ */
+@media (min-width: 1200px) {
+  .app-shell { grid-template-columns: 260px 1fr; }
+
+  .sidebar {
+    width: 260px;
+    padding: 20px 14px;
+  }
+  .sidebar__logo { width: 42px; height: 42px; font-size: 1.15rem; }
+  .sidebar__title { font-size: 1.05rem; }
+  .sidebar__item {
+    font-size: 0.88rem;
+    padding: 10px 14px;
+    min-height: 44px;
+  }
+  .sidebar__item-icon { font-size: 1.15rem; width: 24px; }
+
+  .content {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    padding: 28px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+/* ============================================
+   🖥️ شاشات كبيرة جدًا (1600px+) — 280px
+   ============================================ */
+@media (min-width: 1600px) {
+  .app-shell { grid-template-columns: 280px 1fr; }
+  .sidebar { width: 280px; }
+}

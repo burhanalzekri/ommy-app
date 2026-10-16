@@ -1,0 +1,182 @@
+/* ============================================
+   أُمّي — Design Tokens
+   مستوحى من Nara Baby / Babee / Flo
+   ============================================ */
+
+:root {
+  color-scheme: light;
+
+  /* ============ الخلفيات ============ */
+  --sand: #FDF8F6;          /* الخلفية الرئيسية — كريمي وردي */
+  --cream: #FFFFFF;          /* البطاقات */
+  --beige: #FBF0F2;          /* تمييز خفيف */
+  --beige-2: #F5E4E8;
+  --ink: #2E1F2B;            /* النصوص الرئيسية */
+  --ink-2: #6B5A63;          /* النصوص الثانوية */
+  --ink-3: #A8969E;          /* النصوص الخفيفة */
+  --line: #F0E2E6;
+
+  /* ============ الألوان الأساسية ============ */
+  --rose: #E8A3B6;           /* وردي دافئ — اللون الرئيسي */
+  --rose-deep: #C65D7B;
+  --rose-soft: #FDF0F3;
+
+  --clay: #D9829A;
+  --clay-deep: #B94F70;
+  --clay-soft: #FCEEF2;
+
+  --mint: #A8D5BA;           /* مينت ناعم */
+  --mint-deep: #5C8F72;
+  --mint-soft: #EDF7F0;
+
+  --lavender: #C9BFE5;       /* لافندر */
+  --lavender-deep: #7B68B8;
+  --lavender-soft: #F2EEFC;
+
+  --peach: #F5C8A8;          /* خوخي */
+  --peach-deep: #C17A4A;
+  --peach-soft: #FDF3EB;
+
+  --sky: #A8C8E5;            /* سماوي */
+  --sky-deep: #4A7BB8;
+  --sky-soft: #EEF4FC;
+
+  --sage: #B5C9A8;           /* حكيمي */
+  --sage-deep: #6B8055;
+  --sage-soft: #F2F6EE;
+
+  --honey: #F0C878;          /* ذهبي */
+  --honey-deep: #A87C22;
+  --honey-soft: #FDF6E5;
+
+  --red: #E57070;
+  --red-deep: #B83B3B;
+  --red-soft: #FDEEEE;
+
+  --olive: #B5C9A8;
+  --olive-deep: #6B8055;
+  --olive-soft: #F2F6EE;
+
+  --blue: #A8C8E5;
+  --blue-deep: #4A7BB8;
+  --blue-soft: #EEF4FC;
+
+  --plum: #C9BFE5;
+  --plum-deep: #7B68B8;
+  --plum-soft: #F2EEFC;
+
+  --teal: #A8D5D0;
+  --teal-deep: #4A8880;
+  --teal-soft: #EDF7F5;
+
+  --amber: #F0C878;
+  --amber-deep: #A87C22;
+  --amber-soft: #FDF6E5;
+
+  /* ============ التباعد ============ */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 28px; --sp-7: 40px; --sp-8: 56px;
+
+  /* ============ الحواف المستديرة ============ */
+  --radius-sm: 12px;
+  --radius: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 100px;
+
+  /* ============ الظلال ============ */
+  --shadow-sm: 0 2px 8px rgba(46,31,43,.04);
+  --shadow: 0 6px 20px rgba(46,31,43,.06);
+  --shadow-lg: 0 16px 40px rgba(46,31,43,.10);
+  --shadow-rose: 0 12px 32px rgba(198,93,123,.20);
+
+  /* ============ الخطوط ============ */
+  --font-heading: 'Cairo', 'Tajawal', sans-serif;
+  --font-body: 'Tajawal', 'Cairo', sans-serif;
+
+  --fs-xs:   clamp(0.68rem, 0.62rem + 0.2vw, 0.75rem);
+  --fs-sm:   clamp(0.78rem, 0.72rem + 0.25vw, 0.86rem);
+  --fs-base: clamp(0.88rem, 0.82rem + 0.3vw, 0.95rem);
+  --fs-lg:   clamp(1rem, 0.9rem + 0.5vw, 1.15rem);
+  --fs-xl:   clamp(1.15rem, 1rem + 0.7vw, 1.4rem);
+  --fs-2xl:  clamp(1.4rem, 1.15rem + 1.2vw, 1.85rem);
+  --fs-3xl:  clamp(1.85rem, 1.4rem + 2vw, 2.5rem);
+
+  /* ============ التخطيط ============ */
+  --sidebar-w: 260px;
+  --content-max: 1200px;
+
+  /* ============ الحركة ============ */
+  --ease: cubic-bezier(.4,0,.2,1);
+  --dur-fast: 0.15s;
+  --dur: 0.25s;
+  --dur-slow: 0.4s;
+}
+
+/* ============ الوضع الليلي ============ */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --sand: #1A1418;
+  --cream: #241C22;
+  --beige: #2E2429;
+  --beige-2: #3A2E34;
+  --ink: #F5EDF1;
+  --ink-2: #C9B8C0;
+  --ink-3: #8B7A82;
+  --line: #382C32;
+
+  --rose: #E8A3B6;
+  --rose-deep: #F0B5C5;
+  --rose-soft: #3A1F2A;
+
+  --clay: #D9829A;
+  --clay-deep: #E8A3B6;
+  --clay-soft: #3A1F2A;
+
+  --mint: #A8D5BA;
+  --mint-deep: #B8DFC7;
+  --mint-soft: #1F3028;
+
+  --lavender: #C9BFE5;
+  --lavender-deep: #D5CDF0;
+  --lavender-soft: #281F3A;
+
+  --peach: #F5C8A8;
+  --peach-deep: #F8D5BC;
+  --peach-soft: #3A2A1F;
+
+  --sky: #A8C8E5;
+  --sky-deep: #BCD5EC;
+  --sky-soft: #1E283A;
+
+  --sage: #B5C9A8;
+  --sage-deep: #C5D5B9;
+  --sage-soft: #232A1F;
+
+  --honey: #F0C878;
+  --honey-deep: #F5D5A0;
+  --honey-soft: #3A2F1A;
+
+  --red: #E57070;
+  --red-deep: #F08080;
+  --red-soft: #3A1E1E;
+
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.3);
+  --shadow: 0 6px 20px rgba(0,0,0,.4);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.5);
+  --shadow-rose: 0 12px 32px rgba(232,163,182,.15);
+}
+
+/* ============ وضع المطر ============ */
+[data-theme="rainy"] {
+  --sand: #EEF2F5;
+  --cream: #F8FBFC;
+  --ink: #1E2933;
+  --ink-2: #4A5866;
+  --line: #D8E0E8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

@@ -1,0 +1,87 @@
+/* ============================================
+   Service Worker — عمل بدون إنترنت
+   ============================================ */
+
+const CACHE_NAME = 'ommi-v1';
+const CORE_ASSETS = [
+  './',
+  './index.html',
+  './main.js',
+  './manifest.json',
+  './styles/tokens.css',
+  './styles/base.css',
+  './styles/components.css',
+  './styles/nutrition.css',
+  './styles/sleep.css',
+  './styles/pregnancy.css',
+  './styles/growth.css',
+  './styles/vaccines.css',
+  './styles/assistant.css',
+  './styles/toast.css',
+  './styles/responsive.css',
+  './lib/storage.js',
+  './lib/toast.js',
+];
+
+/* === التثبيت: خزّن الملفات الأساسية === */
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(CORE_ASSETS))
+      .then(() => self.skipWaiting())
+  );
+});
+
+/* === التنشيط: احذف الكاشات القديمة === */
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.filter(k => k !== CACHE_NAME)
+            .map(k => caches.delete(k))
+      )
+    ).then(() => self.clients.claim())
+  );
+});
+
+/* === الجلب: Cache First للأصول، Network First للـ HTML === */
+self.addEventListener('fetch', event => {
+  const { request } = event;
+  const url = new URL(request.url);
+
+  /* تجاهل الطلبات الخارجية */
+  if (url.origin !== location.origin) return;
+
+  /* Network First للمستندات (لأخذ آخر تحديث) */
+  if (request.mode === 'navigate' || request.destination === 'document') {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(c => c.put(request, copy));
+          return response;
+        })
+        .catch(() => caches.match('./index.html'))
+    );
+    return;
+  }
+
+  /* Cache First لبقية الأصول */
+  event.respondWith(
+    caches.match(request).then(cached => {
+      if (cached) return cached;
+      return fetch(request).then(response => {
+        if (response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(c => c.put(request, copy));
+        }
+        return response;
+      });
+    })
+  );
+});
+
+/* === رسائل من التطبيق (للتنبيهات) === */
+self.addEventListener('message', event => {
+  if (event.data === 'skipWaiting') self.skipWaiting();
+});

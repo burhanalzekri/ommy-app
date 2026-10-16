@@ -1,0 +1,175 @@
+/* ============================================
+   وضع المطر والغيوم
+   ============================================ */
+
+/* === خلفية السماء === */
+[data-theme="rainy"] body,
+[data-theme="rainy"] .app-shell {
+  background: linear-gradient(180deg, #B8C5D1 0%, #D4DEE8 40%, #E8EDF2 100%) !important;
+}
+
+/* === طبقة الغيوم === */
+[data-theme="rainy"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 600px 180px at 20% 10%, rgba(150,170,190,.55), transparent 70%),
+    radial-gradient(ellipse 800px 220px at 80% 25%, rgba(130,155,180,.45), transparent 70%),
+    radial-gradient(ellipse 700px 200px at 40% 50%, rgba(160,178,195,.35), transparent 70%);
+  animation: ommyClouds 40s ease-in-out infinite alternate;
+}
+
+@keyframes ommyClouds {
+  0%   { transform: translateX(0) translateY(0); opacity: .9; }
+  100% { transform: translateX(-40px) translateY(-10px); opacity: 1; }
+}
+
+/* === قطرات المطر === */
+[data-theme="rainy"] .rain-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+[data-theme="rainy"] .rain-drop {
+  position: absolute;
+  top: -20px;
+  width: 2px;
+  height: 18px;
+  background: linear-gradient(180deg, transparent, rgba(120,150,180,.7));
+  border-radius: 100px;
+  animation: ommyRainFall linear infinite;
+  will-change: transform;
+}
+
+@keyframes ommyRainFall {
+  0%   { transform: translateY(-20px) translateX(0); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(105vh) translateX(-25px); opacity: 0; }
+}
+
+/* === وميض خفيف (اختياري) === */
+[data-theme="rainy"] .lightning {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,.6);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  animation: ommyLightning 12s ease-in-out infinite;
+}
+
+@keyframes ommyLightning {
+  0%, 90%, 100% { opacity: 0; }
+  91% { opacity: .4; }
+  92% { opacity: 0; }
+  93% { opacity: .3; }
+  94% { opacity: 0; }
+}
+
+/* === حاوية المطر — تُضاف ديناميكياً === */
+.rain-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  display: none;
+}
+
+[data-theme="rainy"] .rain-container {
+  display: block;
+}
+
+/* === المحتوى فوق المطر === */
+[data-theme="rainy"] .app-bar,
+[data-theme="rainy"] .content,
+[data-theme="rainy"] .tab-bar,
+[data-theme="rainy"] .sidebar {
+  position: relative;
+  z-index: 5;
+}
+
+[data-theme="rainy"] .sidebar {
+  background: linear-gradient(180deg, #2E4155 0%, #3D5468 100%) !important;
+}
+
+[data-theme="rainy"] .app-bar,
+[data-theme="rainy"] .tab-bar {
+  background: rgba(245,248,251,.92) !important;
+  backdrop-filter: blur(14px);
+}
+
+/* === تأثير زجاجي على البطاقات === */
+[data-theme="rainy"] .card {
+  background: rgba(245,248,251,.94) !important;
+  backdrop-filter: blur(8px);
+  border-color: rgba(180,195,210,.5);
+}
+
+[data-theme="rainy"] .card--hero {
+  background: linear-gradient(135deg, #5B7C99 0%, #3E5C75 50%, #2E4155 100%) !important;
+  box-shadow: 0 16px 40px rgba(46,74,120,.35) !important;
+}
+
+/* === أزرار التسجيل السريع === */
+[data-theme="rainy"] .quick-btn {
+  background: rgba(245,248,251,.85) !important;
+  border-color: rgba(180,195,210,.4) !important;
+}
+
+[data-theme="rainy"] .quick-btn:hover {
+  border-color: #5B7C99 !important;
+  box-shadow: 0 12px 28px rgba(91,124,153,.25) !important;
+  background: linear-gradient(145deg, #DCE6EF, #E8EDF2) !important;
+}
+
+[data-theme="rainy"] .section-title::after {
+  background: linear-gradient(90deg, #5B7C99, #A8B8C8, transparent) !important;
+}
+
+[data-theme="rainy"] .tab-bar__item[aria-selected="true"] {
+  color: #2E4A78 !important;
+  background: linear-gradient(145deg, #DCE6F2, #E2E9F0) !important;
+}
+
+[data-theme="rainy"] .app-bar__menu-btn {
+  background: linear-gradient(145deg, #4A6FA5, #2E4A78) !important;
+}
+
+/* === زر ☰ المضغوط === */
+.rain-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(52,211,153,.2);
+  color: #A7F3D0;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  text-align: start;
+  box-sizing: border-box;
+  margin-top: 4px;
+}
+
+.rain-toggle-btn:hover {
+  background: rgba(91,124,153,.2);
+}
+
+/* === استثناء: بطاقات الحمل تبقى بنفسجية حتى في وضع المطر === */
+[data-theme="rainy"] .preg-hero,
+[data-theme="rainy"] [style*="8B5CF6"],
+[data-theme="rainy"] [style*="6D28D9"] {
+  background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 60%, #4C1D95 100%) !important;
+}
